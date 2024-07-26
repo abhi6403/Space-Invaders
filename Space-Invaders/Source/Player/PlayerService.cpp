@@ -1,5 +1,5 @@
 #include "../../Header/Player/PlayerService.h"
-#include "../../Header/Player/PlayerContoller.h"
+#include "../../Header/Player/PlayerController.h"
 
 namespace Player
 {

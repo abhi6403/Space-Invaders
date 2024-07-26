@@ -1,4 +1,4 @@
-#include "../../Header/Player/PlayerContoller.h"
+#include "../../Header/Player/PlayerController.h"
 #include "../../Header/Player/PlayerModel.h"
 #include "../../Header/Player/PlayerView.h"
 #include "../../Header/Event/EventService.h"

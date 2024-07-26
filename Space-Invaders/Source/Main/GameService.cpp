@@ -2,6 +2,7 @@
 #include "../../Header/Graphic/GraphicService.h"
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/UI/UIService.h"
 
 namespace Main
 {
@@ -24,6 +25,10 @@ namespace Main
 	{
 		service_locator = ServiceLocator::getInstance();
 		initialize();
+	}
+	void GameService::showMainMenu()
+	{
+		setGameState(GameState::MAIN_MENU);
 	}
 
 	void GameService::initialize()
