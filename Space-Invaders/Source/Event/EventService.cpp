@@ -21,7 +21,12 @@ namespace Event
 
 	void EventService::update()
 	{
-
+		updateMouseButtonState(left_mouse_button_state, sf::Mouse::Left);
+		updateMouseButtonState(right_mouse_button_state, sf::Mouse::Right);
+		updateKeyboardButtonState(left_arrow_button_state, sf::Keyboard::Left);
+		updateKeyboardButtonState(right_arrow_button_state, sf::Keyboard::Right);
+		updateKeyboardButtonState(A_button_state, sf::Keyboard::A);
+		updateKeyboardButtonState(D_button_state, sf::Keyboard::D);
 	}
 
 	void EventService::processEvents()
@@ -35,6 +40,46 @@ namespace Event
 					game_window->close();
 				}
 			}
+		}
+	}
+
+	void EventService::updateMouseButtonState(ButtonState& current_button_state, sf::Mouse::Button mouse_button)
+	{
+		if (sf::Mouse::isButtonPressed(mouse_button))
+		{
+			switch (current_button_state)
+			{
+			case ButtonState::RELEASED:
+				current_button_state = ButtonState::PRESSED;
+				break;
+			case ButtonState::PRESSED:
+				current_button_state = ButtonState::HELD;
+				break;
+			}
+		}
+		else
+		{
+			current_button_state = ButtonState::RELEASED;
+		}
+	}
+
+	void EventService::updateKeyboardButtonState(ButtonState& current_button_state, sf::Keyboard::Key keyboard_button)
+	{
+		if (sf::Keyboard::isKeyPressed(keyboard_button))
+		{
+			switch (current_button_state)
+			{
+			case ButtonState::RELEASED:
+				current_button_state = ButtonState::PRESSED;
+				break;
+			case ButtonState::PRESSED:
+				current_button_state = ButtonState::HELD;
+				break;
+			}
+		}
+		else
+		{
+			current_button_state = ButtonState::RELEASED;
 		}
 	}
 
@@ -62,24 +107,33 @@ namespace Event
 	{
 		return game_event.type == sf::Event::Closed;
 	}
-
+	
 	bool EventService::pressedLeftKey()
 	{
-		return game_event.key.code == sf::Keyboard::Left;
+		return left_arrow_button_state == ButtonState::HELD; 
 	}
 
 	bool EventService::pressedRightKey()
 	{
-		return game_event.key.code == sf::Keyboard::Right;
+		return right_arrow_button_state == ButtonState::HELD;
+	}
+
+	bool EventService::pressedAKey() 
+	{ 
+		return A_button_state == ButtonState::HELD; 
+	}
+
+	bool EventService::pressedDKey()
+	{ 
+		return D_button_state == ButtonState::HELD;
 	}
 
 	bool EventService::pressedLeftMouseButton()
-	{
-		return game_event.type == sf::Event::MouseButtonPressed && game_event.mouseButton.button == sf::Mouse::Left;
+	{ 
+		return left_mouse_button_state == ButtonState::PRESSED;
 	}
 
-	bool EventService::pressedRightMouseButton()
-	{
-		return game_event.type == sf::Event::MouseButtonPressed && game_event.mouseButton.button == sf::Mouse::Right;
+	bool EventService::pressedRightMouseButton() 
+	{ return right_mouse_button_state == ButtonState::PRESSED; 
 	}
 }
