@@ -15,13 +15,15 @@ namespace Enemy
 		void moveLeft();
 		void moveRight();
 		void moveDown();
-		void move();
+		virtual void move() = 0;
+		void getRandomInitialPosition();
+		void handleOutOfBounds();
 
 	public:
 		EnemyController();
-		~EnemyController();
+		virtual ~EnemyController();
 
-		void initialize();
+		virtual void initialize();
 		void update();
 		void render();
 

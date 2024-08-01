@@ -1,6 +1,7 @@
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyView.h"
+#include "../../Header/Enemy/EnemyConfig.h"
 #include"../../Header/Global/ServiceLocator.h"
 
 namespace Enemy
@@ -36,7 +37,7 @@ namespace Enemy
 		enemy_view->render();
 	}
 
-	void EnemyController::move()
+	/*void EnemyController::move()
 	{
 		switch (enemy_model->getMovementDirection())
 		{
@@ -52,7 +53,7 @@ namespace Enemy
 			moveDown();
 			break;
 		}
-	}
+	}*/
 
 	void EnemyController::moveRight()
 	{
