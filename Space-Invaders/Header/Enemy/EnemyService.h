@@ -1,6 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include<vector>
+#include <vector>
 
 namespace Enemy
 {
@@ -9,6 +8,7 @@ namespace Enemy
 	class EnemyService
 	{
 	private:
+
 		const float spawn_interval = 3.f;
 
 		std::vector<EnemyController*> enemy_list;

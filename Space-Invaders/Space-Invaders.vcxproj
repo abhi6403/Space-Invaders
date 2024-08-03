@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Header\Enemy\Controllers\SubZeroController.h" />
     <ClInclude Include="Header\Enemy\Controllers\ZapperController.h" />
+    <ClInclude Include="Header\Enemy\EnemyConfig.h" />
     <ClInclude Include="Header\Enemy\EnemyController.h" />
     <ClInclude Include="Header\Enemy\EnemyModel.h" />
     <ClInclude Include="Header\Enemy\EnemyService.h" />
