@@ -14,25 +14,25 @@ namespace Graphic
 
 		const sf::Color window_color = sf::Color::Blue;
 
-		sf::VideoMode* video_mode; //pointer to videomode 
-		sf::RenderWindow* game_window; //ptr to renderwindow
+		sf::VideoMode* video_mode; 
+		sf::RenderWindow* game_window; 
 
-		void setVideoMode();  // setting video mode
-		void onDestroy(); //to run when window is deleted 
+		void setVideoMode();  
+		void onDestroy(); 
 
 	public:
 		GraphicService();
-		~GraphicService(); // cleanup
+		~GraphicService(); 
 
-		sf::RenderWindow* createGameWindow(); //create gamewindow
+		sf::RenderWindow* createGameWindow(); 
 
-		void initialize(); //lifecycle functions
+		void initialize(); 
 		void update();
 		void render();
-		bool isGameWindowOpen(); // check if window is open
+		bool isGameWindowOpen(); 
 
-		sf::RenderWindow* getGameWindow(); //getter for the game window instance 
-		sf::Color getWindowColor(); //get the color
+		sf::RenderWindow* getGameWindow();  
+		sf::Color getWindowColor(); 
 
 	};
 }

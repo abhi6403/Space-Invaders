@@ -147,6 +147,7 @@
     <ClCompile Include="Source\Gameplay\GameplayController.cpp" />
     <ClCompile Include="Source\Gameplay\GameplayService.cpp" />
     <ClCompile Include="Source\Gameplay\GameplayView.cpp" />
+    <ClCompile Include="Source\Global\Config.cpp" />
     <ClCompile Include="Source\Global\ServiceLocator.cpp" />
     <ClCompile Include="Source\Graphic\GraphicService.cpp" />
     <ClCompile Include="Source\Main\GameService.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Header\Gameplay\GameplayController.h" />
     <ClInclude Include="Header\Gameplay\GameplayService.h" />
     <ClInclude Include="Header\Gameplay\GameplayView.h" />
+    <ClInclude Include="Header\Global\Config.h" />
     <ClInclude Include="Header\Global\ServiceLocator.h" />
     <ClInclude Include="Header\Graphic\GraphicService.h" />
     <ClInclude Include="Header\Main\GameService.h" />

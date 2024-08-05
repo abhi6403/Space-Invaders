@@ -23,18 +23,18 @@ namespace Main
 		static GameState current_state;
 
 		void showMainMenu();
-		void initialize();		// Handles game initialization.
+		void initialize();		
 		void initializeVariables();
-		void destroy();			// Handles cleanup tasks.
+		void destroy();			
 
 	public:
-		GameService();			// Constructor for initializing the GameService object.
-		~GameService();	    // Destructor for cleaning up resources upon object deletion.
+		GameService();			
+		~GameService();	    
 
-		void ignite();			// Initiates the game.
-		void update();			// Updates the game logic and game state.
-		void render();			// Renders each frame of the game.
-		bool isRunning();	// Checks if the game is currently running.
+		void ignite();			
+		void update();			
+		void render();			
+		bool isRunning();	
 		static void setGameState(GameState new_state);
 		static GameState getGameState();
 	};
