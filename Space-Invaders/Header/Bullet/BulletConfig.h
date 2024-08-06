@@ -9,7 +9,7 @@ namespace Bullet
 		FROST_BULLET,
 	};
 
-	enum class MovementDrirection
+	enum class MovementDirection
 	{
 		UP,
 		DOWN,

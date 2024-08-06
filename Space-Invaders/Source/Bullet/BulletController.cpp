@@ -12,7 +12,7 @@ namespace Bullet
 
 	}
 
-	void BulletController::initialize()
+	void BulletController::initialize(sf::Vector2f position, Bullet::MovementDirection direction)
 	{
 
 	}
