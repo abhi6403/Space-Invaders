@@ -17,7 +17,7 @@ namespace Bullet
 
 	BulletService::~BulletService()
 	{
-		destory();
+		destroy();
 	}
 
 	void BulletService::initialize()
@@ -51,7 +51,7 @@ namespace Bullet
 		}
 	}
 
-	void BulletService::destory()
+	void BulletService::destroy()
 	{
 		for (int i = 0;i < bullet_list.size();i++)delete(bullet_list[i]);
 	}
@@ -65,7 +65,7 @@ namespace Bullet
 		return bullet_controller;
 	}
 
-	void BulletService::destoryBullet(BulletController* bullet_controller)
+	void BulletService::destroyBullet(BulletController* bullet_controller)
 	{
 		bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());
 		delete(bullet_controller);

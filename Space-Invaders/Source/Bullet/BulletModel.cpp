@@ -40,7 +40,7 @@ namespace Bullet
 
 	MovementDirection BulletModel::getMovementDirection()
 	{
-		movement_direction = direction;
+		return movement_direction;
 	}
 
 	float BulletModel::getMovementSpeed()

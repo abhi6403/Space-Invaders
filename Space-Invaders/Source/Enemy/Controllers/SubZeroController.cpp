@@ -2,11 +2,13 @@
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include"../../Header/Bullet/BulletService.h"
 
 namespace Enemy
 {
 
 	using namespace Global;
+	using namespace Bullet;
 
 	namespace Controller
 	{
@@ -24,6 +26,14 @@ namespace Enemy
 		{
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(MovementDirection::DOWN);
+			rate_of_fire = subzero_rate_of_fire;
+		}
+
+		void SubzeroController::fireBullet()
+		{
+			ServiceLocator::getInstance()->getBulletService()->spwanBullet(BulletType::LASER_BULLET,
+				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
+				Bullet::MovementDirection::DOWN);
 		}
 
 		void SubzeroController::move()

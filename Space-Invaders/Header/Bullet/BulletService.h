@@ -12,10 +12,11 @@ namespace Bullet
 	class BulletService
 	{
 	private:
+
 		std::vector<Projectile::IProjectile*>bullet_list;
 
 		BulletController* createBullet(BulletType bullet_type);
-		void destory();
+		void destroy();
 
 	public:
 		BulletService();

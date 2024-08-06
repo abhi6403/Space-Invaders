@@ -16,10 +16,12 @@ namespace Player
 		void processPlayerInput();
 		void moveLeft();
 		void moveRight();
+		void fireBullet();
 
 	public:
 		PlayerController();
 		~PlayerController();
+		
 
 		void initialize();
 		void update();
