@@ -31,3 +31,4 @@ namespace Powerup
 		PowerupType getPowerupType();
 	};
 }
+

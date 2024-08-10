@@ -23,9 +23,6 @@ namespace Enemy
         EnemyModel* enemy_model;
 
         virtual void move() = 0;
-        //void moveLeft();
-        //void moveRight();
-        //void moveDown();
 
         void updateFireTimer();
         void processBulletFire();

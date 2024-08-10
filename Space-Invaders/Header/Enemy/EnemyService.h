@@ -20,6 +20,7 @@ namespace Enemy
 
 		void updateSpawnTimer();
 		void processEnemySpawn();
+		
 
 	public:
 		EnemyService();

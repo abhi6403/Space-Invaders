@@ -2,6 +2,7 @@
 
 namespace Powerup
 {
+
 	PowerupModel::PowerupModel(PowerupType type)
 	{
 		powerup_type = type;

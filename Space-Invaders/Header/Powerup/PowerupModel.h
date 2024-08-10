@@ -20,7 +20,7 @@ namespace Powerup
 		void initialize(sf::Vector2f position);
 
 		sf::Vector2f getPowerupPosition();
-		void setPowerupPosition();
+		void setPowerupPosition(sf::Vector2f position);
 
 		PowerupType getPowerupType();
 		void setPowerupType(PowerupType type);
