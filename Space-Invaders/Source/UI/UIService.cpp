@@ -6,6 +6,8 @@ namespace UI
 {
 	using namespace Main;
 	using namespace MainMenu;
+	using namespace Interface;
+
 	UIService::UIService()
 	{
 		main_menu_controller = nullptr;
@@ -29,27 +31,37 @@ namespace UI
 
 	void UIService::update()
 	{
-		switch (GameService::getGameState())
-		{
-		case GameState::MAIN_MENU:
-			return main_menu_controller->update();
-			break;
-		}
+		IUIController* ui_controller = getCurrentUIController();
+		if (ui_controller)ui_controller->update();
 	}
 
 	void UIService::render()
 	{
-		switch (GameService::getGameState())
-		{
-		case GameState::MAIN_MENU:
-			return main_menu_controller->render();
-			break;
-		}
+		IUIController* ui_controller = getCurrentUIController();
+		if (ui_controller)ui_controller->render();
+	}
+
+	void UIService::showScreen()
+	{
+		IUIController* ui_controller = getCurrentUIController();
+		if (ui_controller)ui_controller->show();
 	}
 
 	void UIService::initializeControllers()
 	{
 		main_menu_controller->initialize();
+	}
+
+	IUIController* UIService::getCurrentUIController()
+	{
+		switch (GameService::getGameState())
+		{
+		case GameState::MAIN_MENU:
+			return main_menu_controller;
+
+		default:
+			return nullptr;;
+		}
 	}
 
 	void UIService::destory()
