@@ -1,5 +1,6 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+#include "../../Header/UI/UIElement/ImageView.h"
 
 namespace Bullet
 {
@@ -12,14 +13,14 @@ namespace Bullet
 		const float bullet_sprite_width = 18.f;
 		const float bullet_sprite_height = 18.f;
 
-		sf::RenderWindow* game_window;
-		sf::Texture bullet_texture;
-		sf::Sprite bullet_sprite;
-
 		BulletController* bullet_controller;
+		UI::UIElement::ImageView* bullet_image;
 
-		void initializeImage(BulletType type);
-		void scaleImage();
+		void initializeImage();
+		void createUIElements();
+		sf::String getBulletTexturePath();
+
+		void destroy();
 
 	public:
 		BulletView();
