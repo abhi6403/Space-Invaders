@@ -12,7 +12,7 @@ namespace UI
 		{
 			UIView::initialize();
 			setTexture(texture_path);
-			setScale(image_height, image_width);
+			setScale(image_width, image_height);
 			setPosition(position);
 
 		}
@@ -29,6 +29,14 @@ namespace UI
 			if (ui_state == UIState::VISIBLE)
 			{
 				game_window->draw(image_sprite);
+			}
+		}
+
+		void ImageView::setTexture(sf::String texture_path)
+		{
+			if (image_texture.loadFromFile(texture_path))
+			{
+				image_sprite.setTexture(image_texture);
 			}
 		}
 
@@ -59,10 +67,15 @@ namespace UI
 
 		void ImageView::setCentreAlinged()
 		{
-			float x_position = (game_window->getSize().x / 2) - (image_sprite.getGlobalBounds().width / 2);
+			float x_position = (game_window->getSize().x / 2)  - (image_sprite.getGlobalBounds().width / 2);
 			float y_position = image_sprite.getGlobalBounds().getPosition().y;
 
 			image_sprite.setPosition(x_position, y_position);
+		}
+
+		void ImageView::setOriginAtCentre()
+		{
+			image_sprite.setOrigin(image_sprite.getLocalBounds().width / 2, image_sprite.getLocalBounds().height / 2);
 		}
 	}
 }

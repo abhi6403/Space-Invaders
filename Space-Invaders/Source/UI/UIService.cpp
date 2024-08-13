@@ -31,6 +31,11 @@ namespace UI
 		initializeControllers();
 	}
 
+	void UIService::initializeControllers()
+	{
+		main_menu_controller->initialize();
+	}
+
 	void UIService::update()
 	{
 		IUIController* ui_controller = getCurrentUIController();
@@ -49,10 +54,7 @@ namespace UI
 		if (ui_controller)ui_controller->show();
 	}
 
-	void UIService::initializeControllers()
-	{
-		main_menu_controller->initialize();
-	}
+	
 
 	IUIController* UIService::getCurrentUIController()
 	{

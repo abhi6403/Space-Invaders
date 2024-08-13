@@ -1,5 +1,6 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+#include"../../Header/Graphic/GraphicService.h"
 
 namespace UI
 {

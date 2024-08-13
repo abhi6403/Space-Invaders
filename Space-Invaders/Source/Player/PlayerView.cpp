@@ -31,7 +31,7 @@ namespace Player
 
 	void PlayerView::initializeImage()
 	{
-		player_image->initialize(getPlayerTexturePath(), player_sprite_height, player_sprite_width, player_controller->getPlayerPosition());
+		player_image->initialize(getPlayerTexturePath(),  player_sprite_width, player_sprite_height, player_controller->getPlayerPosition());
 	}
 
 	void PlayerView::update()

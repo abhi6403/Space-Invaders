@@ -7,38 +7,31 @@ namespace Gameplay
 {
 	using namespace Global;
 	using namespace Graphic;
+	using namespace UI::UIElement;
 
 	GameplayView::GameplayView()
 	{
-
+		createUIElements();
 	}
 
 	GameplayView::~GameplayView()
 	{
+		destroy();
+	}
 
+	void GameplayView::createUIElements()
+	{
+		background_image = new ImageView();
 	}
 
 	void GameplayView::initialize()
 	{
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializeBackGroundSprite();
+		initializeImage();
 	}
 
-	void GameplayView::initializeBackGroundSprite()
+	void GameplayView::initializeImage()
 	{
-		if (background_texture.loadFromFile(Config::background_texture_path))
-		{
-			background_sprite.setTexture(background_texture);
-			scaleBackGroundSprite();
-		}
-	}
-
-	void GameplayView::scaleBackGroundSprite()
-	{
-		background_sprite.setScale(
-			static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
-			static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
-		);
+		background_image->initialize(getBackgroundTexturePath(), background_sprite_width, background_sprite_height, sf::Vector2f(0, 0));
 	}
 
 	void GameplayView::update()
@@ -48,6 +41,16 @@ namespace Gameplay
 
 	void GameplayView::render()
 	{
-		game_window->draw(background_sprite);
+		background_image->render();
+	}
+
+	sf::String GameplayView::getBackgroundTexturePath()
+	{
+		return Config::background_texture_path;
+	}
+
+	void GameplayView::destroy()
+	{
+		delete(background_image);
 	}
 }

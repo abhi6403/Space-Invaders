@@ -33,7 +33,7 @@ namespace Element
 
 		void BunkerView::initializeImage()
 		{
-			bunker_image->initialize(getBunkerTexturePath(), bunker_sprite_height, bunker_sprite_width, bunker_controller->getBunkerPosition());
+			bunker_image->initialize(getBunkerTexturePath(), bunker_sprite_width, bunker_sprite_height,  bunker_controller->getBunkerPosition());
 		}
 
 		void BunkerView::update()

@@ -32,7 +32,7 @@ namespace Bullet
 
 	void BulletView::initializeImage()
 	{
-		bullet_image->initialize(getBulletTexturePath(), bullet_sprite_height, bullet_sprite_width, bullet_controller->getProjectilePosition());
+		bullet_image->initialize(getBulletTexturePath(), bullet_sprite_width,bullet_sprite_height,bullet_controller->getProjectilePosition());
 	}
 
 	void BulletView::update()
