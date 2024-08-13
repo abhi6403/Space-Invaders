@@ -9,12 +9,14 @@ namespace UI
 	private:
 
 		MainMenu::MainMenuUIController* main_menu_controller;
-		Interface::IUIController* ui_controller;
+		
 
 
 		void createControllers();
 		void initializeControllers();
-		void getCurrentUIController();
+
+		Interface::IUIController* getCurrentUIController();
+
 		void destory();
 
 
@@ -26,9 +28,6 @@ namespace UI
 		void update();
 		void render();
 		void showScreen();
-
-
-
 
 	};
 }
