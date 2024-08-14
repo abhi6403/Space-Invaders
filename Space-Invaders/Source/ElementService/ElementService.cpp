@@ -37,4 +37,9 @@ namespace Element
 	{
 		for (int i = 0;i < bunker_list.size();i++)delete(bunker_list[i]);
 	}
+
+	void ElementService::reset()
+	{
+		destroy();
+	}
 }

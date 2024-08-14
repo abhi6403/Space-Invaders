@@ -63,6 +63,11 @@ namespace Bullet
 		}
 	}
 
+	const sf::Sprite& BulletView::getBulletSprite()
+	{
+		return bullet_image->getSprite();
+	}
+
 	void BulletView::destroy()
 	{
 		delete(bullet_image);

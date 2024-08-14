@@ -10,6 +10,7 @@
 #include"../../Header/Sound/SoundService.h"
 #include"../../Header/Bullet/BulletService.h"
 #include"../../Header/Powerup/PowerupService.h"
+#include"../../Header/Collision/CollisionService.h"
 
 namespace Global
 {
@@ -28,25 +29,26 @@ namespace Global
         Sound::SoundService* sound_service;
         Bullet::BulletService* bullet_service;
         Powerup::PowerupService* powerup_service;
+        Collision::CollisionService* collision_service;
 
         ServiceLocator();
         ~ServiceLocator();
 
         // Private Methods:
-        void createServices(); 			// Creates instances of all services.
-        void clearAllServices(); 		//	Deletes and deallocates memory for all services.
+        void createServices(); 			
+        void clearAllServices(); 		
 
     public:
         // Public Methods:
-        static ServiceLocator* getInstance();  // Provides a method to access the unique ServiceLocator instance (object). We will discuss this later.
+        static ServiceLocator* getInstance();  
 
-        void initialize(); 			//	Initializes the ServiceLocator.
-        void update(); 				//	Updates all services.
-        void render(); 				//	Renders using the services.
+        void initialize(); 			
+        void update(); 				
+        void render(); 				
 
         // Methods to Get Specific Services: 
-        Event::EventService* getEventService();   // Retrieve the EventService instance
-        Graphic::GraphicService* getGraphicService();  // Retrieve the GraphicService instance
+        Event::EventService* getEventService();   
+        Graphic::GraphicService* getGraphicService();  
         Player::PlayerService* getPlayerService();
         Time::TimeService* getTimeService();
         UI::UIService* getUIService();
@@ -56,5 +58,6 @@ namespace Global
         Sound::SoundService* getSoundService();
         Bullet::BulletService* getBulletService();
         Powerup::PowerupService* getPowerupService();
+        Collision::CollisionService* getCollisionService();
     };
 }

@@ -31,6 +31,7 @@ namespace Enemy
 		void update();
 		void render();
 
+		void reset();
 
 		EnemyController* spawnEnemy();
 		void destroyEnemy(EnemyController* enemy_controller);

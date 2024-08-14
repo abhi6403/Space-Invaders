@@ -32,5 +32,7 @@ namespace Element
 		void initialize();
 		void update();
 		void render();
+
+		void reset();
 	};
 }
