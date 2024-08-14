@@ -40,7 +40,7 @@ namespace Player
 
 		const float freeze_duration = 2.f;
 		
-		const float freeze_duration = 0.2f;
+		const float fire_cooldown_duration = 0.2f;
 		const float rapid_fire_cooldown_duration = 0.05f;
 		const float tripple_laser_position_offset = 30.f;
 
@@ -60,7 +60,7 @@ namespace Player
 		sf::Vector2f getPlayerPosition();
 		void setPlayerPosition(sf::Vector2f position);
 
-		int getPlayeScore();
+		int getPlayerScore();
 		void setPlayerScore(int score);
 
 		PlayerState getPlayerState();
@@ -68,8 +68,12 @@ namespace Player
 
 		Entity::EntityType getOwnerEntityType();
 
-		bool isShieldEnabled(bool value);
-		bool setRapidFireState(bool value);
-		bool setTrippleFireState(bool value);
+		bool isShieldEnabled();
+		bool isRapidFireEnabled();
+		bool isTrippleFireEnabled();
+
+		void setShieldState(bool value);
+		void setRapidFireState(bool value);
+		void setTrippleFireState(bool value);
 	};
 }

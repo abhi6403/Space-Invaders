@@ -32,6 +32,11 @@ namespace UI
 			}
 		}
 
+		const sf::Sprite& ImageView::getSprite()
+		{
+			return image_sprite;
+		}
+
 		void ImageView::setTexture(sf::String texture_path)
 		{
 			if (image_texture.loadFromFile(texture_path))

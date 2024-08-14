@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -140,6 +140,8 @@
     <ClCompile Include="Source\Bullet\Controllers\FrostBulletController.cpp" />
     <ClCompile Include="Source\Bullet\Controllers\LaserBulletController.cpp" />
     <ClCompile Include="Source\Bullet\Controllers\TorpedoeController.cpp" />
+    <ClCompile Include="Source\Collision\CollisionService.cpp" />
+    <ClCompile Include="Source\Collision\ICollider.cpp" />
     <ClCompile Include="Source\ElementService\Bunker\BunkerController.cpp" />
     <ClCompile Include="Source\ElementService\Bunker\BunkerModel.cpp" />
     <ClCompile Include="Source\ElementService\Bunker\BunkerView.cpp" />
@@ -191,6 +193,8 @@
     <ClInclude Include="Header\Bullet\Controllers\LaserBulletController.h" />
     <ClInclude Include="Header\Bullet\Controllers\TorpedoeController.h" />
     <ClInclude Include="Header\Collectible\ICollectible.h" />
+    <ClInclude Include="Header\Collision\CollisionService.h" />
+    <ClInclude Include="Header\Collision\ICollider.h" />
     <ClInclude Include="Header\Elements\Bunker\BunkerController.h" />
     <ClInclude Include="Header\Elements\Bunker\BunkerModel.h" />
     <ClInclude Include="Header\Elements\Bunker\BunkerView.h" />

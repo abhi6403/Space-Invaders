@@ -15,6 +15,8 @@ namespace UI
 			ImageView();
 			virtual ~ImageView();
 
+			const virtual sf::Sprite& getSprite();
+
 			virtual void initialize(sf::String texture_path, float image_width, float image_height, sf::Vector2f position);
 			virtual void update() override;
 			virtual void render() override;

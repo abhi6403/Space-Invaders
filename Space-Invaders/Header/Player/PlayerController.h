@@ -8,6 +8,7 @@ namespace Player
 {
 	enum class PlayerState;
 	class PlayerView;
+	class PlayerModel;
 
 	class PlayerController : public Collision::ICollider
 	{
@@ -29,13 +30,13 @@ namespace Player
 		bool processBulletCollision(ICollider* other_collider);
 		bool processPowerupCollision(ICollider* other_collider);
 		bool processEnemyCollision(ICollider* other_collider);
-		void updateFreezDuration();
-		void freezPlayer();
+		void updateFreezeDuration();
+		void freezePlayer();
 
 		void updateFireDuration();
 		void processBulletFire();
-		void FireBullet(bool b_tripple_laser = false);
-		void FireBullet(sf::Vector2f position);
+		void fireBullet(bool b_tripple_laser = false);
+		void fireBullet(sf::Vector2f position);
 
 		void updatePowerupDuration();
 
@@ -53,7 +54,7 @@ namespace Player
 		void update();
 		void render();
 
-		void rest();
+		void reset();
 
 		void enableShield();
 		void enableRapidFire();
@@ -63,6 +64,7 @@ namespace Player
 		void onCollision(ICollider* other_collider) override;
 
 		sf::Vector2f getPlayerPosition();
+		int getPlayerScore();
 		PlayerState getPlayerState();
 		
 	};
