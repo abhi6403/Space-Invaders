@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include"../../Header/Entity/EntityConfig.h"
 
 namespace Player
 {
@@ -21,6 +20,12 @@ namespace Player
         void initialize();
         void update();
         void render();
+
+        void enableShield();
+        void enableRapidFire();
+        void enableTrippleLaser();
+
+        void reset();
     };
 }
 
