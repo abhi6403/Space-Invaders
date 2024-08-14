@@ -27,4 +27,5 @@ namespace Player
 	{
 		player_controller->render();
 	}
+
 }

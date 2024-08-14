@@ -2,9 +2,10 @@
 
 namespace Bullet
 {
-	BulletModel::BulletModel(BulletType type)
+	BulletModel::BulletModel(BulletType type,Entity::EntityType type_of_owner)
 	{
 		bullet_type = type;
+		owner_type = type_of_owner;
 	}
 
 	BulletModel::~BulletModel()
@@ -26,6 +27,11 @@ namespace Bullet
 	void BulletModel::setBulletPosition(sf::Vector2f position)
 	{
 		bullet_position = position;
+	}
+
+	Entity::EntityType BulletModel::getOwnerEntityType()
+	{
+		return owner_type;
 	}
 
 	BulletType BulletModel::getBulletType()

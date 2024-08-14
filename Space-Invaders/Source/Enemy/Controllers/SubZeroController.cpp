@@ -3,6 +3,7 @@
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include"../../Header/Bullet/BulletService.h"
+#include"../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -31,7 +32,7 @@ namespace Enemy
 
 		void SubzeroController::fireBullet()
 		{
-			ServiceLocator::getInstance()->getBulletService()->spwanBullet(BulletType::FROST_BULLET,
+			ServiceLocator::getInstance()->getBulletService()->spwanBullet(BulletType::FROST_BULLET,Entity::EntityType::ENEMY,
 				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}

@@ -6,12 +6,14 @@
 #include"../../Header/Enemy/Controllers/ZapperController.h"
 #include"../../Header/Enemy/Controllers/ThunderSnakeController.h"
 #include"../../Header/Bullet/BulletConfig.h"
+#include"../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
 	using namespace Bullet;
+	using namespace Entity;
 
 	EnemyController::EnemyController(EnemyType type)
 	{
@@ -81,6 +83,11 @@ namespace Enemy
 		{
 			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 		}
+	}
+
+	Entity::EntityType EnemyController::getOwnerEntityType()
+	{
+		return enemy_model->getOwnerEntityType();
 	}
 
 	sf::Vector2f EnemyController::getEnemyPosition()

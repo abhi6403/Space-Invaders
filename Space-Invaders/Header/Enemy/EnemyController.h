@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include"../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -42,5 +43,7 @@ namespace Enemy
         sf::Vector2f getEnemyPosition();
         EnemyState getEnemyState();
         EnemyType getEnemyType();
+
+        Entity::EntityType getOwnerEntityType();
     };
 }

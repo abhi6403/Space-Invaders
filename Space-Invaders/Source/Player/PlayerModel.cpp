@@ -48,4 +48,9 @@ namespace Player
 	{
 		player_state = state;
 	}
+
+	Entity::EntityType PlayerModel::getOwnerEntityType()
+	{
+		return owner_type;
+	}
 }

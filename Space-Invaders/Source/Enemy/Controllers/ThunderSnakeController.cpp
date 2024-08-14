@@ -3,6 +3,7 @@
 #include"../../Header/Enemy/EnemyConfig.h"
 #include"../../Header/Global/ServiceLocator.h"
 #include"../../Header/Bullet/BulletService.h"
+#include"../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -29,7 +30,7 @@ namespace Enemy
 
 		void ThunderSnakeController::fireBullet()
 		{
-			ServiceLocator::getInstance()->getBulletService()->spwanBullet(BulletType::TORPEDO,
+			ServiceLocator::getInstance()->getBulletService()->spwanBullet(BulletType::TORPEDO,Entity::EntityType::ENEMY,
 				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}

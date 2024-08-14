@@ -11,7 +11,7 @@ namespace Bullet
 			const float frost_bullet_movement_speed = 500.f;
 
 		public:
-			FrostBulletController(BulletType type);
+			FrostBulletController(BulletType type, Entity::EntityType owner_type);
 			~FrostBulletController();
 
 			void initialize(sf::Vector2f position, MovementDirection direction)override;

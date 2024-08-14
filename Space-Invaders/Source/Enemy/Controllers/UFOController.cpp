@@ -3,6 +3,7 @@
 #include"../../Header/Enemy/EnemyModel.h"
 #include"../../Header/Global/ServiceLocator.h"
 #include"../../Header/Bullet/BulletService.h"
+#include"../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include"../../Header/Entity/EntityConfig.h"
 
 namespace Player
 {
@@ -28,5 +29,6 @@ namespace Player
 		void render();
 
 		sf::Vector2f getPlayerPosition();
+		Entity::EntityType getOwnerEntityType();
 	};
 }

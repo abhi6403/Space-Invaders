@@ -11,7 +11,7 @@ namespace Bullet
 			const float torpedo_movement_speed = 200.f;
 
 		public:
-			TorpedoController(BulletType type);
+			TorpedoController(BulletType type,Entity::EntityType owner_type);
 			~TorpedoController();
 
 			void initialize(sf::Vector2f position, MovementDirection direction)override;

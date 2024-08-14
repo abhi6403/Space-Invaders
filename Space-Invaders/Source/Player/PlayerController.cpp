@@ -4,6 +4,7 @@
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include"../../Header/Bullet/BulletService.h"
+#include"../../Header/Entity/EntityConfig.h"
 #include<algorithm>
 
 namespace Player
@@ -64,7 +65,7 @@ namespace Player
 
 	void PlayerController::fireBullet()
 	{
-		ServiceLocator::getInstance()->getBulletService()->spwanBullet(BulletType::LASER_BULLET,
+		ServiceLocator::getInstance()->getBulletService()->spwanBullet(BulletType::LASER_BULLET,Entity::EntityType::PLAYER,
 			player_model->getPlayerPosition() + player_model->barrel_position_offset,
 			Bullet::MovementDirection::UP);
 	}

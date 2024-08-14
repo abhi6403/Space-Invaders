@@ -58,6 +58,10 @@ namespace Enemy
 		enemy_type = type;
 	}
 
+	Entity::EntityType EnemyModel::getOwnerEntityType()
+	{
+		return owner_type;
+	}
 
 	MovementDirection EnemyModel::getMovementDirection()
 	{
