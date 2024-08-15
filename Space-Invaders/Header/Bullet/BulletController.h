@@ -30,7 +30,7 @@ namespace Bullet
 
 	public:
 		BulletController(BulletType type,Entity::EntityType owner_type);
-		virtual ~BulletController();
+		virtual ~BulletController() override;
 
 		void initialize(sf::Vector2f position, Bullet::MovementDirection direction)override;
 		void update() override;

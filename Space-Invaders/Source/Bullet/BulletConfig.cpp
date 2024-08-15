@@ -1,4 +1,5 @@
 #include"../../Header/Bullet/BulletConfig.h"
+#include<SFML/Graphics.hpp>
 
 namespace Bullet
 {

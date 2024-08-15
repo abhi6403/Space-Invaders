@@ -6,9 +6,10 @@
 
 namespace Bullet
 {
-	class BulletController;
+	
 	enum class BulletType;
 	enum class MovementDirection;
+	class BulletController;
 
 	class BulletService
 	{

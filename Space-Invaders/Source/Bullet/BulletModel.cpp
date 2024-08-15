@@ -44,6 +44,11 @@ namespace Bullet
 		bullet_type = type;
 	}
 
+	void BulletModel::setMovementDirection(MovementDirection direction)
+	{
+		movement_direction = direction;
+	}
+
 	MovementDirection BulletModel::getMovementDirection()
 	{
 		return movement_direction;

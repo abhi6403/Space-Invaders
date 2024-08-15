@@ -254,6 +254,7 @@ namespace Player
 		}
 	}
 
+
 	void PlayerController::processBulletFire()
 	{
 		if (player_model->elapsed_fire_duration > 0) return;
