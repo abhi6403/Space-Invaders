@@ -7,14 +7,17 @@ namespace Powerup
 {
 	enum class PowerupType;
 	class PowerupController;
+	enum class MovementDirection;
 
 	class PowerupService
 	{
 	private:
 		std::vector<Collectible::ICollectible*> powerup_list;
+		std::vector<Collectible::ICollectible*>flagged_power_up_list;
 
 		PowerupController* createPowerup(PowerupType powerup_type);
 		void destroy();
+		void destroyFlaggedPowerup();
 
 	public:
 		PowerupService();

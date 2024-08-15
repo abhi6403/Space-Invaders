@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include"../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -14,6 +13,7 @@ namespace Enemy
 		const float spawn_interval = 3.f;
 
 		std::vector<EnemyController*> enemy_list;
+		std::vector<EnemyController*>flagged_enemy_list;
 		float spawn_timer;
 
 		EnemyController* createEnemy(EnemyType enemy_type);
@@ -21,7 +21,9 @@ namespace Enemy
 
 		void updateSpawnTimer();
 		void processEnemySpawn();
-		
+
+		void destroy();
+		void destroyFlaggedEnemies();
 
 	public:
 		EnemyService();

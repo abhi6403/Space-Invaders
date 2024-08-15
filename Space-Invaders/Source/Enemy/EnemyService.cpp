@@ -7,12 +7,14 @@
 #include"../../Header/Enemy/Controllers/ZapperController.h"
 #include"../../Header/Enemy/Controllers/ThunderSnakeController.h"
 #include"../../Header/Enemy/Controllers/UFOController.h"
+#include"../../Header/Collision/ICollider.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
 	using namespace Controller;
+	using namespace Collision;
 
 	EnemyService::EnemyService()
 	{ 
@@ -21,7 +23,7 @@ namespace Enemy
 
 	EnemyService::~EnemyService() 
 	{
-		
+		destroy();
 	}
 
 	void EnemyService::initialize()
@@ -92,8 +94,24 @@ namespace Enemy
 
 	void EnemyService::destroyEnemy(EnemyController* enemy_controller)
 	{
+		dynamic_cast<ICollider*>(enemy_controller)->disableCollision();
+		flagged_enemy_list.push_back(enemy_controller);
 		enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), enemy_controller), enemy_list.end());
-		delete(enemy_controller);
+	}
+
+	void EnemyService::destroy()
+	{
+		for (int i = 0; i < enemy_list.size(); i++)
+		{
+			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(enemy_list[i]));
+			delete (enemy_list[i]);
+		}
+		enemy_list.clear();
+	}
+
+	void EnemyService::reset()
+	{
+		destroy();
 	}
 
 }

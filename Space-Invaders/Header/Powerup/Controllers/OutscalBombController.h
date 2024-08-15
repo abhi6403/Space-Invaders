@@ -11,7 +11,7 @@ namespace Powerup
 			OutscalBombController(PowerupType type);
 			virtual ~OutscalBombController();
 
-			void onCollected() override;
+			void applyPowerup() override;
 		};
 	}
 }
