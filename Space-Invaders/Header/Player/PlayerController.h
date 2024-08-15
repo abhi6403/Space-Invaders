@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include"../../Header/Collision/ICollider.h"
-#include"../../Header/Powerup/PowerupConfig.h"
 #include"../../Header/Player/PlayerModel.h"
+#include"../../Header/Entity/EntityConfig.h"
+#include"../../Header/Collision/ICollider.h"
 
 namespace Player
 {
@@ -59,6 +59,10 @@ namespace Player
 		void enableShield();
 		void enableRapidFire();
 		void enableTrippleLaser();
+
+		void decreasePlayerlive();
+		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed == val; }
+		
 
 		const sf::Sprite& getColliderSprite() override;
 		void onCollision(ICollider* other_collider) override;

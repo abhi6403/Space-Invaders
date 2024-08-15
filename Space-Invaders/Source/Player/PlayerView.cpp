@@ -55,6 +55,11 @@ namespace Player
 		return player_image->getSprite();
 	}
 
+	void PlayerView::reset()
+	{
+		destroy();
+	}
+
 	void PlayerView::destroy()
 	{
 		delete(player_image);

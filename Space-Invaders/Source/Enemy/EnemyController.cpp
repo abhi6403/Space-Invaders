@@ -119,6 +119,7 @@ namespace Enemy
 
 	void EnemyController::destroy()
 	{
+		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
 		ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 	}
 }
