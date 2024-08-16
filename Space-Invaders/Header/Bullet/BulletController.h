@@ -29,7 +29,7 @@ namespace Bullet
 		void handleOutOfBounds();
 
 	public:
-		BulletController(BulletType type,Entity::EntityType owner_type);
+		BulletController(BulletType bullet_type,Entity::EntityType owner_type);
 		virtual ~BulletController() override;
 
 		void initialize(sf::Vector2f position, Bullet::MovementDirection direction)override;

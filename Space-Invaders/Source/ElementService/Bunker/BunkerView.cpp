@@ -52,6 +52,11 @@ namespace Element
 			return Config::bunker_texture_path;
 		}
 
+		const sf::Sprite& BunkerView::getBunkerSprite()
+		{
+			return bunker_image->getSprite();
+		}
+
 		void BunkerView::destroy()
 		{
 			delete(bunker_image);

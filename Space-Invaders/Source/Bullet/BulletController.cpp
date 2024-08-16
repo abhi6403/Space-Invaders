@@ -16,10 +16,10 @@ namespace Bullet
 	using namespace Enemy;
 	using namespace Element::Bunker;
 
-	BulletController::BulletController(BulletType bullet_type,Entity::EntityType owner_type)
+	BulletController::BulletController(BulletType type,EntityType owner_type)
 	{
 		bullet_view = new BulletView();
-		bullet_model = new BulletModel(bullet_type, owner_type);
+		bullet_model = new BulletModel(type, owner_type);
 	}
 
 	BulletController::~BulletController()

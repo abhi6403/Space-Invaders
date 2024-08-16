@@ -22,7 +22,10 @@ namespace Element
 		};
 
 		std::vector<Bunker::BunkerController*> bunker_list;
+		std::vector<Bunker::BunkerController*> flagged_bunker_list;
 
+		void spawnBunkers();
+		void destroyFlaggedBunkers();
 		void destroy();
 
 	public:
@@ -34,5 +37,7 @@ namespace Element
 		void render();
 
 		void reset();
+
+		void destroyBunker(Bunker::BunkerController* bunker_controller);
 	};
 }

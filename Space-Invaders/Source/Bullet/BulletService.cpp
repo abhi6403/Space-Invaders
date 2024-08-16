@@ -11,9 +11,10 @@
 namespace Bullet
 {
 	using namespace Controller;
-	using namespace Projectile;
 	using namespace Global;
 	using namespace Collision;
+	using namespace Entity;
+	using namespace Projectile;
 
 	BulletService::BulletService()
 	{
@@ -33,14 +34,19 @@ namespace Bullet
 
 	void BulletService::update()
 	{
-		for (int i = 0;i < bullet_list.size();i++)bullet_list[i]->update();
-
+		for (int i = 0; i < bullet_list.size(); i++)
+		{
+			bullet_list[i]->update();
+		}
 		destroyFlaggedBullets();
 	}
 
 	void BulletService::render()
 	{
-		for (int i = 0;i < bullet_list.size();i++)bullet_list[i]->render();
+		for (int i = 0; i < bullet_list.size(); i++)
+		{
+			bullet_list[i]->render();
+		}
 	}
 
 	BulletController* BulletService::createBullet(BulletType bullet_type,Entity::EntityType owner_type)
@@ -59,9 +65,9 @@ namespace Bullet
 		}
 	}
 
-	bool BulletService::isValidBullet(int index, std::vector<Projectile::IProjectile*>& bullet_list)
+	bool BulletService::isValidBullet(int index_i, std::vector<Projectile::IProjectile*>& bullet_list)
 	{
-		return index >= 0 && index < bullet_list.size() && bullet_list[index] != nullptr;
+		return index_i >= 0 && index_i < bullet_list.size() && bullet_list[index_i] != nullptr;
 	}
 
 	void BulletService::destroyFlaggedBullets()
@@ -88,11 +94,13 @@ namespace Bullet
 		bullet_list.clear();
 	}
 
-	BulletController* BulletService::spawnBullet(BulletType bullet_type,Entity::EntityType owner_type, sf::Vector2f position, MovementDirection direction)
+	BulletController* BulletService::spawnBullet(BulletType bullet_type,EntityType owner_type, sf::Vector2f position, MovementDirection direction)
 	{
 		BulletController* bullet_controller = createBullet(bullet_type,owner_type);
 
 		bullet_controller->initialize(position, direction);
+
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bullet_controller));
 		bullet_list.push_back(bullet_controller);
 		return bullet_controller;
 	}

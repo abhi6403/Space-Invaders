@@ -6,6 +6,7 @@ namespace Enemy
 	EnemyModel::EnemyModel(EnemyType type) {
 
 		enemy_type = type;
+		owner_type = Entity::EntityType::ENEMY;
 
 	}
 

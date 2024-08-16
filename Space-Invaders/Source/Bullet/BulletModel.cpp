@@ -2,10 +2,10 @@
 
 namespace Bullet
 {
-	BulletModel::BulletModel(BulletType type,Entity::EntityType type_of_owner)
+	BulletModel::BulletModel(BulletType bullet_type,Entity::EntityType owner_type)
 	{
-		bullet_type = type;
-		owner_type = type_of_owner;
+		this->bullet_type = bullet_type;
+		this->owner_type = owner_type;
 	}
 
 	BulletModel::~BulletModel()

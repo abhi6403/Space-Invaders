@@ -3,16 +3,18 @@
 #include "../../Header/Player/PlayerView.h"
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Global/ServiceLocator.h"
-#include"../../Header/Bullet/BulletService.h"
+#include"../../Header/Bullet/BulletConfig.h"
 #include"../../Header/Entity/EntityConfig.h"
 #include"../../Header/Bullet/BulletController.h"
 #include"../../Header/Enemy/EnemyController.h"
 #include"../../Header/Powerup/PowerupController.h"
+#include"../../Header/Main/GameService.h"
 #include<algorithm>
 
 namespace Player
 {
 	using namespace Global;
+	using namespace Main;
 	using namespace Event;
 	using namespace Bullet;
 	using namespace Time;
@@ -124,7 +126,7 @@ namespace Player
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
 		if (enemy_controller)
 		{
-			ServiceLocator::getInstance()->getGameplayService()->restart();
+			decreasePlayerlive();
 			return true;
 		}
 		return false;
@@ -142,30 +144,31 @@ namespace Player
 
 	void PlayerController::updatePowerupDuration()
 	{
-		if (player_model->elapsed_shield_duration > 0)
+		if (elapsed_shield_duration > 0)
 		{
-			player_model->elapsed_shield_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			elapsed_shield_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (player_model->elapsed_shield_duration <= 0)
+			if (elapsed_shield_duration <= 0)
 				disableShield();
 		}
 
-		if (player_model->elapsed_rapid_fire_duration > 0)
+		if (elapsed_rapid_fire_duration > 0)
 		{
-			player_model->elapsed_rapid_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			elapsed_rapid_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (player_model->elapsed_rapid_fire_duration <= 0)
+			if (elapsed_rapid_fire_duration <= 0)
 				disableRapidFire();
 		}
 
-		if (player_model->elapsed_tripple_laser_duration > 0)
+		if (elapsed_tripple_laser_duration > 0)
 		{
-			player_model->elapsed_tripple_laser_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			elapsed_tripple_laser_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (player_model->elapsed_tripple_laser_duration <= 0)
+			if (elapsed_tripple_laser_duration <= 0)
 				disableTrippleLaser();
 		}
 	}
+
 
 	void PlayerController::enableShield()
 	{

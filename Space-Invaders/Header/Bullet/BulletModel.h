@@ -18,7 +18,7 @@ namespace Bullet
 		MovementDirection movement_direction;
 
 	public:
-		BulletModel(BulletType type, Entity::EntityType owner_type);
+		BulletModel(BulletType bullet_type, Entity::EntityType owner_type);
 		~BulletModel();
 
 		void initialize(sf::Vector2f position, MovementDirection direction);

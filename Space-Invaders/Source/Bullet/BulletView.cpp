@@ -38,6 +38,7 @@ namespace Bullet
 	void BulletView::update()
 	{
 		bullet_image->setPosition(bullet_controller->getProjectilePosition());
+		bullet_image->update();
 	}
 
 	void BulletView::render()
