@@ -39,7 +39,6 @@ namespace Bullet
 		
 		for (Projectile::IProjectile* bullet : bullet_list)
 			bullet->update();
-
 		destroyFlaggedBullets();
 	}
 
@@ -53,7 +52,7 @@ namespace Bullet
 
 	BulletController* BulletService::createBullet(BulletType bullet_type,EntityType owner_type)
 	{
-		
+	
 		switch (bullet_type)
 		{
 		case Bullet::BulletType::LASER_BULLET:
@@ -71,7 +70,7 @@ namespace Bullet
 	bool BulletService::isValidBullet(int index_i, std::vector<Projectile::IProjectile*>& bullet_list)
 	{
 		
-		return index_i <= 0 && index_i < bullet_list.size() && bullet_list[index_i] != nullptr;
+		return index_i >= 0 && index_i < bullet_list.size() && bullet_list[index_i] != nullptr;
 		
 	}
 
@@ -114,11 +113,11 @@ namespace Bullet
 
 	void BulletService::destroyBullet(BulletController* bullet_controller)
 	{
-		if (std::find(flagged_bullet_list.begin(), flagged_bullet_list.end(), bullet_controller) == flagged_bullet_list.end())
+		/*if (std::find(flagged_bullet_list.begin(), flagged_bullet_list.end(), bullet_controller) == flagged_bullet_list.end())
 		{
 			flagged_bullet_list.push_back(bullet_controller);
 			bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());
-		}
+		}*/
 	}
 
 	void BulletService::reset()

@@ -287,6 +287,7 @@ namespace Player
 
 	void PlayerController::fireBullet(sf::Vector2f position)
 	{
+		
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
 			player_model->getOwnerEntityType(), position, Bullet::MovementDirection::UP);
 	}
