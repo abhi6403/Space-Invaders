@@ -27,8 +27,6 @@ namespace Bullet
 		void setBulletPosition(sf::Vector2f position);
 		
 		BulletType getBulletType();
-		void setBulletType(BulletType type);
-
 		Entity::EntityType getOwnerEntityType();
 
 		MovementDirection getMovementDirection();

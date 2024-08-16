@@ -5,7 +5,7 @@ namespace Bullet
 {
 	namespace Controller
 	{
-		TorpedoController::TorpedoController(BulletType type, Entity::EntityType owner_type) :BulletController(type,owner_type)
+		TorpedoController::TorpedoController(BulletType bullet_type, Entity::EntityType owner_type) :BulletController(bullet_type,owner_type)
 		{
 
 		}

@@ -22,7 +22,5 @@ namespace Enemy
         LEFT,
         RIGHT,
         DOWN,
-        DIAGONAL_LEFT,
-        DIAGONAL_RIGHT,
     };
 }

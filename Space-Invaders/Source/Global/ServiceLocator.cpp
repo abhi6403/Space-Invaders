@@ -91,6 +91,7 @@ namespace Global
 		sound_service->initialize();
 		powerup_service->initialize();
 		collision_service->initialize();
+		bullet_service->initialize();
 	}
 
 	void ServiceLocator::update()

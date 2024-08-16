@@ -1,7 +1,9 @@
 #include"../../Header/Bullet/BulletModel.h"
+#include"../../Header/Bullet/BulletConfig.h"
 
 namespace Bullet
 {
+
 	BulletModel::BulletModel(BulletType bullet_type,Entity::EntityType owner_type)
 	{
 		this->bullet_type = bullet_type;
@@ -15,33 +17,33 @@ namespace Bullet
 
 	void BulletModel::initialize(sf::Vector2f position, MovementDirection direction)
 	{
+		
 		movement_direction = direction;
 		bullet_position = position;
 	}
 
 	sf::Vector2f BulletModel::getBulletPosition()
 	{
+		
 		return bullet_position;
 	}
 
 	void BulletModel::setBulletPosition(sf::Vector2f position)
 	{
+		
 		bullet_position = position;
 	}
 
 	Entity::EntityType BulletModel::getOwnerEntityType()
 	{
+		
 		return owner_type;
 	}
 
 	BulletType BulletModel::getBulletType()
 	{
+		
 		return bullet_type;
-	}
-
-	void BulletModel::setBulletType(BulletType type)
-	{
-		bullet_type = type;
 	}
 
 	void BulletModel::setMovementDirection(MovementDirection direction)

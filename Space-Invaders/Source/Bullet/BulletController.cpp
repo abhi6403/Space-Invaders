@@ -16,10 +16,10 @@ namespace Bullet
 	using namespace Enemy;
 	using namespace Element::Bunker;
 
-	BulletController::BulletController(BulletType type,EntityType owner_type)
+	BulletController::BulletController(BulletType bullet_type,EntityType owner_type)
 	{
 		bullet_view = new BulletView();
-		bullet_model = new BulletModel(type, owner_type);
+		bullet_model = new BulletModel(bullet_type, owner_type);
 	}
 
 	BulletController::~BulletController()
@@ -30,6 +30,7 @@ namespace Bullet
 
 	void BulletController::initialize(sf::Vector2f position, Bullet::MovementDirection direction)
 	{
+		
 		bullet_view->initialize(this);
 		bullet_model->initialize(position, direction);
 	}
@@ -37,6 +38,7 @@ namespace Bullet
 	
 	void BulletController::update()
 	{
+		
 		updateProjectilePosition();
 		bullet_view->update();
 		handleOutOfBounds();
@@ -44,25 +46,13 @@ namespace Bullet
 
 	void BulletController::render()
 	{
+		
 		bullet_view->render();
-	}
-
-	void BulletController::updateProjectilePosition()
-	{
-		switch (bullet_model->getMovementDirection())
-		{
-		case::Bullet::MovementDirection::UP:
-			moveUP();
-			break;
-
-		case::Bullet::MovementDirection::DOWN:
-			moveDown();
-			break;
-		}
 	}
 
 	void BulletController::moveUP()
 	{
+
 		sf::Vector2f currentPosition = bullet_model->getBulletPosition();
 		currentPosition.y -= bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 		bullet_model->setBulletPosition(currentPosition);
@@ -70,6 +60,7 @@ namespace Bullet
 
 	void BulletController::moveDown()
 	{
+		
 		sf::Vector2f currentPosition = bullet_model->getBulletPosition();
 		currentPosition.y += bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 		bullet_model->setBulletPosition(currentPosition);
@@ -89,30 +80,50 @@ namespace Bullet
 
 	sf::Vector2f BulletController::getProjectilePosition()
 	{
+		
 		return bullet_model->getBulletPosition();
 	}
 
 	BulletType BulletController::getBulletType()
 	{
+		
 		return bullet_model->getBulletType();
 	}
 
-	EntityType BulletController::getOwnerEntityType()
+	Entity::EntityType BulletController::getOwnerEntityType()
 	{
+		
 		return bullet_model->getOwnerEntityType();
 	}
 
 	const sf::Sprite& BulletController::getColliderSprite()
 	{
+		
 		return bullet_view->getBulletSprite();
 	}
 
 	void BulletController::onCollision(ICollider* other_collider)
 	{
+		
 		processPlayerCollision(other_collider);
 		processEnemyCollision(other_collider);
 		processBunkerCollision(other_collider);
 		processBulletCollision(other_collider);
+	}
+
+	void BulletController::updateProjectilePosition()
+	{
+		
+		switch (bullet_model->getMovementDirection())
+		{
+		case::Bullet::MovementDirection::UP:
+			moveUP();
+			break;
+
+		case::Bullet::MovementDirection::DOWN:
+			moveDown();
+			break;
+		}
 	}
 
 	void BulletController::processBulletCollision(ICollider* other_collider)

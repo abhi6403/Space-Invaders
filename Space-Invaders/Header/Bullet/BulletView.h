@@ -5,7 +5,6 @@
 namespace Bullet
 {
 	class BulletController;
-	enum class BulletType;
 
 	class BulletView
 	{

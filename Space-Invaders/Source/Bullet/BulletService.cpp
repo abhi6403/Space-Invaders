@@ -2,6 +2,7 @@
 #include"../../Header/Bullet/BulletController.h"
 #include"../../Header/Bullet/BulletConfig.h"
 #include"../../Header/Entity/EntityConfig.h"
+#include"../../Header/Projectile/IProjectile.h"
 #include"../../Header/Bullet/Controllers/FrostBulletController.h"
 #include"../../Header/Bullet/Controllers/LaserBulletController.h"
 #include"../../Header/Bullet/Controllers/TorpedoeController.h"
@@ -18,7 +19,7 @@ namespace Bullet
 
 	BulletService::BulletService()
 	{
-
+		
 	}
 
 	BulletService::~BulletService()
@@ -34,23 +35,25 @@ namespace Bullet
 
 	void BulletService::update()
 	{
-		for (int i = 0; i < bullet_list.size(); i++)
-		{
-			bullet_list[i]->update();
-		}
+		
+		
+		for (Projectile::IProjectile* bullet : bullet_list)
+			bullet->update();
+
 		destroyFlaggedBullets();
 	}
 
 	void BulletService::render()
 	{
-		for (int i = 0; i < bullet_list.size(); i++)
-		{
-			bullet_list[i]->render();
-		}
+		
+		for (Projectile::IProjectile* bullet : bullet_list)
+			 bullet->render();
+		
 	}
 
-	BulletController* BulletService::createBullet(BulletType bullet_type,Entity::EntityType owner_type)
+	BulletController* BulletService::createBullet(BulletType bullet_type,EntityType owner_type)
 	{
+		
 		switch (bullet_type)
 		{
 		case Bullet::BulletType::LASER_BULLET:
@@ -67,11 +70,14 @@ namespace Bullet
 
 	bool BulletService::isValidBullet(int index_i, std::vector<Projectile::IProjectile*>& bullet_list)
 	{
-		return index_i >= 0 && index_i < bullet_list.size() && bullet_list[index_i] != nullptr;
+		
+		return index_i <= 0 && index_i < bullet_list.size() && bullet_list[index_i] != nullptr;
+		
 	}
 
 	void BulletService::destroyFlaggedBullets()
 	{
+		
 		for (int i = 0; i < flagged_bullet_list.size(); i++)
 		{
 			if (!isValidBullet(i, flagged_bullet_list)) continue;
@@ -84,6 +90,7 @@ namespace Bullet
 
 	void BulletService::destroy()
 	{
+		
 		for (int i = 0; i < bullet_list.size(); i++)
 		{
 			if (!isValidBullet(i, bullet_list)) continue;
@@ -96,8 +103,8 @@ namespace Bullet
 
 	BulletController* BulletService::spawnBullet(BulletType bullet_type,EntityType owner_type, sf::Vector2f position, MovementDirection direction)
 	{
+		
 		BulletController* bullet_controller = createBullet(bullet_type,owner_type);
-
 		bullet_controller->initialize(position, direction);
 
 		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bullet_controller));

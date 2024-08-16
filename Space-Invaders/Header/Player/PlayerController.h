@@ -61,7 +61,7 @@ namespace Player
 		void enableTrippleLaser();
 
 		void decreasePlayerlive();
-		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed == val; }
+		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed = val; }
 		
 
 		const sf::Sprite& getColliderSprite() override;

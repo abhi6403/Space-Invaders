@@ -1,5 +1,4 @@
 #include"../../Header/Bullet/BulletConfig.h"
-#include<SFML/Graphics.hpp>
 
 namespace Bullet
 {
@@ -11,6 +10,7 @@ namespace Bullet
 
 	sf::String BulletConfig::getBulletTexturePath(BulletType bullet_type)
 	{
+		
 		switch (bullet_type)
 		{
 		case::Bullet::BulletType::LASER_BULLET:

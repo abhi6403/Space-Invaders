@@ -27,7 +27,7 @@ namespace UI
 
 		void UIView::render()
 		{
-
+			
 		}
 
 		void UIView::show()
