@@ -2,6 +2,7 @@
 #include "../../Header/UI/MainMenuUI/MainMenuUIController.h"
 #include"../../Header/UI/Interface/IUIController.h"
 #include"../../Header/UI/GameplayUI/GameplayUIController.h"
+#include"../../Header/UI/SplashScreenUI/SplashScreenUIController.h"
 
 namespace UI
 {
@@ -11,7 +12,7 @@ namespace UI
 
 		MainMenu::MainMenuUIController* main_menu_controller;
 		GameplayUI::GameplayUIController* gameplayUIController;
-		
+		SplashScreen::SplashScreenUIController* splash_screen_ui_controller;
 
 
 		void createControllers();

@@ -13,6 +13,9 @@ namespace Main
 		BOOT,
 		MAIN_MENU,
 		GAMEPLAY,
+		SPLASH_SCREEN,
+		INSTRUCTIONS,
+		CREDITS,
 	};
 	class GameService
 	{
@@ -22,7 +25,7 @@ namespace Main
 		sf::RenderWindow* game_window;
 		static GameState current_state;
 
-		void showMainMenu();
+		void showSplashScreen();
 		void initialize();		
 		void initializeVariables();
 		void destroy();			

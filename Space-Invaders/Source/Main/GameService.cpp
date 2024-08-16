@@ -7,13 +7,15 @@
 namespace Main
 {
 	using namespace Global;
+	using namespace Graphic;
+	using namespace Event;
+	using namespace UI;
 
 	GameState GameService::current_state = GameState::BOOT;
 
 	GameService::GameService()
 	{
 		service_locator = nullptr;
-		game_window = nullptr;
 	}
 
 	GameService::~GameService()
@@ -26,16 +28,18 @@ namespace Main
 		service_locator = ServiceLocator::getInstance();
 		initialize();
 	}
-	void GameService::showMainMenu()
-	{
-		setGameState(GameState::MAIN_MENU);
-	}
 
 	void GameService::initialize()
 	{
 		service_locator->initialize();
 		initializeVariables();
-		showMainMenu();
+		showSplashScreen();
+	}
+
+	void GameService::showSplashScreen()
+	{
+		setGameState(GameState::SPLASH_SCREEN);
+		ServiceLocator::getInstance()->getUIService()->showScreen();
 	}
 
 	void GameService::initializeVariables()
@@ -45,7 +49,7 @@ namespace Main
 
 	void GameService::destroy()
 	{
-		//cleanup resources
+		
 	}
 
 	void GameService::update()
@@ -56,14 +60,13 @@ namespace Main
 
 	void GameService::render()
 	{
-		game_window->clear(service_locator->getGraphicService()->getWindowColor());
+		game_window->clear();
 		service_locator->render();
 		game_window->display();
 	}
 
 	bool GameService::isRunning()
 	{
-		// Checks if the game is currently running.
 		return service_locator->getGraphicService()->isGameWindowOpen();
 	}
 
