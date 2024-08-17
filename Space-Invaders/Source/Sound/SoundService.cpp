@@ -22,8 +22,17 @@ namespace Sound
 		if (!buffer_button_click.loadFromFile(Config::button_click_sound_path))
 			printf("error loading background music file");
 		else
-			if (!explosion_sound.loadFromFile(Config::explosion_sound))
+			if (!buffer_explosion_sound.loadFromFile(Config::explosion_sound_path))
 				printf("error loading bakground music file");
+			else
+				if (!buffer_powerup_enabled.loadFromFile(Config::powerup_enabled_sound_path))
+					printf("error loading powerup music file");
+				else
+					if (!buffer_powerup_disabled.loadFromFile(Config::powerup_disabled_sound_path))
+						printf("error loading powerup music file");
+					else
+						if (!buffer_bullet_fire.loadFromFile(Config::bulletfire_sound_path))
+							printf("error loading bulletfire music file");
 	}
 
 	void SoundService::playSound(SoundType soundType)
@@ -32,10 +41,27 @@ namespace Sound
 		{
 		case SoundType::BUTTON_CLICK:
 			sound_effect.setBuffer(buffer_button_click);
+			sound_effect.play();
 			break;
 
 		case SoundType::EXPLOSION:
-			sound_effect.setBuffer(explosion_sound);
+			sound_effect.setBuffer(buffer_explosion_sound);
+			sound_effect.play();
+			break;
+
+		case SoundType::POWERUP_ENABLED:
+			sound_effect.setBuffer(buffer_powerup_enabled);
+			sound_effect.play();
+			break;
+
+		case SoundType::POWERUP_DISABLED:
+			sound_effect.setBuffer(buffer_powerup_disabled);
+			sound_effect.play();
+			break;
+
+		case SoundType::BULLET_FIRE:
+			sound_effect.setBuffer(buffer_bullet_fire);
+			sound_effect.play();
 			break;
 
 		default:
@@ -43,7 +69,7 @@ namespace Sound
 			return;
 		}
 
-		sound_effect.play();
+		
 	}
 
 	void SoundService::playBackgroundMusic()

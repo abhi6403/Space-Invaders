@@ -7,6 +7,7 @@ namespace Player
 {
 	using namespace Global;
 	using namespace Collision;
+
 	PlayerService::PlayerService()
 	{
 		player_controller = new PlayerController();

@@ -3,6 +3,7 @@
 #include"../../Header/Player/PlayerModel.h"
 #include"../../Header/Entity/EntityConfig.h"
 #include"../../Header/Collision/ICollider.h"
+#include"../../Header/Powerup/PowerupConfig.h"
 
 namespace Player
 {
@@ -61,14 +62,13 @@ namespace Player
 		void enableTrippleLaser();
 
 		void decreasePlayerlive();
-		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed = val; }
-		
+		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
+		inline void increaseBulletsFired(int val) { PlayerModel::bullets_fired += val; }
 
 		const sf::Sprite& getColliderSprite() override;
 		void onCollision(ICollider* other_collider) override;
 
 		sf::Vector2f getPlayerPosition();
-		int getPlayerScore();
 		PlayerState getPlayerState();
 		
 	};

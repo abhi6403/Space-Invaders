@@ -19,7 +19,6 @@ namespace Player
 
 		void createUIElements();
 		void initializeImage();
-		sf::String getPlayerTexturePath();
 
 		void destroy();
 
@@ -31,8 +30,7 @@ namespace Player
 		void update();
 		void render();
 
-		void reset();
-
+		void setPlayerHighlight(bool b_highlight);
 		const sf::Sprite& getPlayerSprite();
 
 	};

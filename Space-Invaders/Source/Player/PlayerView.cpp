@@ -2,6 +2,8 @@
 #include"../../Header/Player/PlayerController.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include"../../Header/Global/Config.h"
+#include"../../Header/Graphic/GraphicService.h"
+#include"../../Header/Player/PlayerModel.h"
 
 namespace Player
 {
@@ -31,7 +33,7 @@ namespace Player
 
 	void PlayerView::initializeImage()
 	{
-		player_image->initialize(getPlayerTexturePath(),  player_sprite_width, player_sprite_height, player_controller->getPlayerPosition());
+		player_image->initialize(Config::player_texture_path,  player_sprite_width, player_sprite_height, player_controller->getPlayerPosition());
 	}
 
 	void PlayerView::update()
@@ -45,21 +47,16 @@ namespace Player
 		player_image->render();
 	}
 
-	sf::String PlayerView::getPlayerTexturePath()
-	{
-		return Config::player_texture_path;
-	}
-
 	const sf::Sprite& PlayerView::getPlayerSprite()
 	{
 		return player_image->getSprite();
 	}
 
-	void PlayerView::reset()
+	void PlayerView::setPlayerHighlight(bool b_highlight)
 	{
-		destroy();
+		if (b_highlight)player_image->setImageAlpha(PlayerModel::invincible_player_alpha);
+		else player_image->setImageAlpha(255);
 	}
-
 	void PlayerView::destroy()
 	{
 		delete(player_image);

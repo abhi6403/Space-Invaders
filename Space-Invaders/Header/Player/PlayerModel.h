@@ -29,10 +29,10 @@ namespace Player
 		PlayerState player_state;
 		Entity::EntityType owner_type;
 
-		int player_score;
-
 		static int player_lives;
 		static int enemies_killed;
+		static int player_score;
+		static int bullets_fired;
 
 		bool b_shield;
 		bool b_rapid_fire;
@@ -40,6 +40,7 @@ namespace Player
 
 	public:
 		const float player_movement_speed = 350.0f;
+		static const int invincible_player_alpha = 170.f;
 
 		const sf::Vector2f left_most_position = sf::Vector2f(50.f, 950.f);
 		const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 950.f);
@@ -51,18 +52,11 @@ namespace Player
 		const float rapid_fire_powerup_duration = 10.f;
 		const float tripple_laser_powerup_duration = 10.f;
 
-		const float freeze_duration = 2.f;
+		const float freeze_duration = 1.5f;
 		
 		const float fire_cooldown_duration = 0.2f;
 		const float rapid_fire_cooldown_duration = 0.05f;
 		const float tripple_laser_position_offset = 30.f;
-
-		float elapsed_shield_duration;
-		float elapsed_rapid_fire_duration;
-		float elapsed_tripple_laser_duration;
-
-		float elapsed_fire_duration;
-		float elapsed_freeze_duration;
 
 		PlayerModel();
 		~PlayerModel();
@@ -72,9 +66,6 @@ namespace Player
 
 		sf::Vector2f getPlayerPosition();
 		void setPlayerPosition(sf::Vector2f position);
-
-		int getPlayerScore();
-		void setPlayerScore(int score);
 
 		PlayerState getPlayerState();
 		void setPlayerState(PlayerState state);

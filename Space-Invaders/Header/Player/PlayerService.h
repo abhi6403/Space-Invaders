@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 
 namespace Player
 {
@@ -26,6 +25,8 @@ namespace Player
         void enableTrippleLaser();
 
         void increaseEnemiesKilled(int val);
+        void increaseScore(int val);
+        void decreaseScore(int val);
 
         void reset();
     };
