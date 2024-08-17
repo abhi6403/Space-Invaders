@@ -19,7 +19,7 @@ namespace Powerup
 
 		void ShieldController::applyPowerup()
 		{
-			ServiceLocator::getInstance()->getPlayerService()->reset();
+			ServiceLocator::getInstance()->getPlayerService()->enableShield();
 		};
 	}
 }

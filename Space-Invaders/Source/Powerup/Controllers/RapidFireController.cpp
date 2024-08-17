@@ -19,7 +19,7 @@ namespace Powerup
 
 		void RapidFireController::applyPowerup()
 		{
-			ServiceLocator::getInstance()->getPlayerService()->reset();
+			ServiceLocator::getInstance()->getPlayerService()->enableRapidFire();
 		};
 	}
 }
