@@ -47,10 +47,20 @@ namespace UI
 			}
 		}
 
+		void ImageView::setTextureRect(sf::IntRect texture_rect)
+		{
+			image_sprite.setTextureRect(texture_rect);
+		}
+
 		void ImageView::setScale(float width, float height)
 		{
-			float scale_x = width / image_sprite.getTexture()->getSize().x;
-			float scale_y = height / image_sprite.getTexture()->getSize().y;
+			setScale(width, height, image_sprite.getTexture()->getSize().x, image_sprite.getTexture()->getSize().y);
+		}
+
+		void ImageView::setScale(float width, float height, float tile_width, float tile_height)
+		{
+			float scale_x = width / tile_width;
+			float scale_y = height / tile_height;
 
 			image_sprite.setScale(scale_x, scale_y);
 		}

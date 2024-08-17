@@ -21,6 +21,9 @@ namespace Sound
 	{
 		if (!buffer_button_click.loadFromFile(Config::button_click_sound_path))
 			printf("error loading background music file");
+		else
+			if (!explosion_sound.loadFromFile(Config::explosion_sound))
+				printf("error loading bakground music file");
 	}
 
 	void SoundService::playSound(SoundType soundType)
@@ -30,6 +33,11 @@ namespace Sound
 		case SoundType::BUTTON_CLICK:
 			sound_effect.setBuffer(buffer_button_click);
 			break;
+
+		case SoundType::EXPLOSION:
+			sound_effect.setBuffer(explosion_sound);
+			break;
+
 		default:
 			printf("invaild sound type");
 			return;
