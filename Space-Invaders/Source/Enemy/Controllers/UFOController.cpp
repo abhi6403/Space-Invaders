@@ -1,16 +1,19 @@
 #include"../../Header/Enemy/Controllers/UFOController.h"
 #include"../../Header/Enemy/EnemyConfig.h"
 #include"../../Header/Enemy/EnemyModel.h"
+#include"../../Header/Enemy/EnemyView.h"
 #include"../../Header/Global/ServiceLocator.h"
 #include"../../Header/Bullet/BulletController.h"
 #include"../../Header/Entity/EntityConfig.h"
 #include"../../Header/Collision/ICollider.h"
+#include"../../Header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Bullet;
 	using namespace Entity;
+	using namespace Time;
 
 	namespace Controller
 	{
@@ -27,7 +30,6 @@ namespace Enemy
 		void UFOController::initialize()
 		{
 			EnemyController::initialize();
-			enemy_model->setMovementDirection(MovementDirection::LEFT);
 		}
 
 		void UFOController::fireBullet()
@@ -61,12 +63,11 @@ namespace Enemy
 		{
 			sf::Vector2f currentposition = enemy_model->getEnemyPosition();
 
-			currentposition.x -= enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentposition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentposition.x <= enemy_model -> left_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::RIGHT);
-				enemy_model->setReferencePosition(currentposition);
 			}
 			else
 			{
@@ -78,12 +79,11 @@ namespace Enemy
 		{
 			sf::Vector2f currentposition = enemy_model->getEnemyPosition();
 
-			currentposition.x += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentposition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentposition.x >= enemy_model->right_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::LEFT);
-				enemy_model->setReferencePosition(currentposition);
 			}
 			else
 			{
@@ -101,6 +101,12 @@ namespace Enemy
 				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(getRandomPowerupType(), enemy_model->getEnemyPosition());
 				return;
 			}
+		}
+
+		void UFOController::destroy()
+		{
+
+			EnemyController::destroy();
 		}
 	}
 }

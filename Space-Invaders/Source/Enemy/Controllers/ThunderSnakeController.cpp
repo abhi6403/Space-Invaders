@@ -2,13 +2,14 @@
 #include"../../Header/Enemy/EnemyModel.h"
 #include"../../Header/Enemy/EnemyConfig.h"
 #include"../../Header/Global/ServiceLocator.h"
-#include"../../Header/Bullet/BulletService.h"
+#include"../../Header/Bullet/BulletConfig.h"
 #include"../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Bullet;
+	using namespace Time;
 
 	namespace Controller
 	{
@@ -25,12 +26,12 @@ namespace Enemy
 		void ThunderSnakeController::initialize()
 		{
 			EnemyController::initialize();
-			rate_of_fire = thunder_snake_rate_of_fire;
+			rate_of_fire = thundersnake_rate_of_fire;
 		}
 
 		void ThunderSnakeController::fireBullet()
 		{
-			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDO,Entity::EntityType::ENEMY,
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDO,enemy_model->getOwnerEntityType(),
 				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}
@@ -53,8 +54,8 @@ namespace Enemy
         void ThunderSnakeController::moveLeft()
         {
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-			currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.y += thundersnake_vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.x -= thundersnake_horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
@@ -71,8 +72,8 @@ namespace Enemy
         void ThunderSnakeController::moveRight()
         {
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-			currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-			currentPosition.x += horizontal_movement_speed* ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.y += thundersnake_vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.x += thundersnake_horizontal_movement_speed* ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
@@ -84,6 +85,12 @@ namespace Enemy
 			}
             
         }
+
+		void ThunderSnakeController::destroy()
+		{
+
+			EnemyController::destroy();
+		}
 	}
 }
 

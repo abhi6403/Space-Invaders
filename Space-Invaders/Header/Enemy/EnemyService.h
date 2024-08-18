@@ -10,7 +10,7 @@ namespace Enemy
 	{
 	private:
 
-		const float spawn_interval = 3.f;
+		const float spawn_interval = 2.f;
 
 		std::vector<EnemyController*> enemy_list;
 		std::vector<EnemyController*>flagged_enemy_list;
@@ -27,7 +27,7 @@ namespace Enemy
 
 	public:
 		EnemyService();
-		virtual ~EnemyService();
+		 ~EnemyService();
 
 		void initialize();
 		void update();
