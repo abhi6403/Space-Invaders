@@ -3,6 +3,7 @@
 
 namespace Bullet
 {
+	using namespace Entity;
 
 	BulletModel::BulletModel(BulletType bullet_type,Entity::EntityType owner_type)
 	{

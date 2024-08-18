@@ -1,8 +1,6 @@
 #include"../../Header/Bullet/BulletService.h"
 #include"../../Header/Bullet/BulletController.h"
 #include"../../Header/Bullet/BulletConfig.h"
-#include"../../Header/Entity/EntityConfig.h"
-#include"../../Header/Projectile/IProjectile.h"
 #include"../../Header/Bullet/Controllers/FrostBulletController.h"
 #include"../../Header/Bullet/Controllers/LaserBulletController.h"
 #include"../../Header/Bullet/Controllers/TorpedoeController.h"
@@ -35,10 +33,9 @@ namespace Bullet
 
 	void BulletService::update()
 	{
-		
-		
 		for (Projectile::IProjectile* bullet : bullet_list)
 			bullet->update();
+
 		destroyFlaggedBullets();
 	}
 
@@ -113,11 +110,9 @@ namespace Bullet
 
 	void BulletService::destroyBullet(BulletController* bullet_controller)
 	{
-		/*if (std::find(flagged_bullet_list.begin(), flagged_bullet_list.end(), bullet_controller) == flagged_bullet_list.end())
-		{
-			flagged_bullet_list.push_back(bullet_controller);
-			bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());
-		}*/
+		/*dynamic_cast<ICollider*>(bullet_controller)->disableCollision();
+		flagged_bullet_list.push_back(bullet_controller);
+		bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());*/
 	}
 
 	void BulletService::reset()

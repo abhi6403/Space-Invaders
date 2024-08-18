@@ -52,8 +52,6 @@ namespace Bullet
 		bullet_image->render();
 	}
 
-
-
 	sf::String BulletView::getBulletTexturePath()
 	{
 		
