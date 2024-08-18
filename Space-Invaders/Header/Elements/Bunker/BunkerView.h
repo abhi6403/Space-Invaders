@@ -19,7 +19,6 @@ namespace Element
 
 			void createUIElements();
 			void initializeImage();
-			sf::String getBunkerTexturePath();
 
 			void destroy();
 
