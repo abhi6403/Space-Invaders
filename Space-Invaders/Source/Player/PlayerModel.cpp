@@ -28,7 +28,6 @@ namespace Player
 		player_lives = max_player_lives;
 
 		enemies_killed = 0;
-		bullets_fired = 0;
 
 		b_shield = false;
 		b_rapid_fire = false;

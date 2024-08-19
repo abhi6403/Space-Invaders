@@ -31,8 +31,8 @@ namespace Player
 		bool processBulletCollision(ICollider* other_collider);
 		bool processPowerupCollision(ICollider* other_collider);
 		bool processEnemyCollision(ICollider* other_collider);
-		void updateFreezeDuration();
-		void freezePlayer();
+		void updateFreezDuration();
+		void freezPlayer();
 
 		void updateFireDuration();
 		void processBulletFire();
@@ -63,7 +63,6 @@ namespace Player
 
 		void decreasePlayerlive();
 		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
-		inline void increaseBulletsFired(int val) { PlayerModel::bullets_fired += val; }
 
 		const sf::Sprite& getColliderSprite() override;
 		void onCollision(ICollider* other_collider) override;
@@ -71,5 +70,7 @@ namespace Player
 		sf::Vector2f getPlayerPosition();
 		PlayerState getPlayerState();
 		
+		Entity::EntityType getOwnerEntityType();
+
 	};
 }

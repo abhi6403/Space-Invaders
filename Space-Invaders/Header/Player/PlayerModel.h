@@ -31,7 +31,6 @@ namespace Player
 
 		static int player_lives;
 		static int enemies_killed;
-		static int player_score;
 		static int bullets_fired;
 
 		bool b_shield;
@@ -52,11 +51,15 @@ namespace Player
 		const float rapid_fire_powerup_duration = 10.f;
 		const float tripple_laser_powerup_duration = 10.f;
 
-		const float freeze_duration = 1.5f;
+		const float freez_duration = 2.f;
 		
 		const float fire_cooldown_duration = 0.2f;
 		const float rapid_fire_cooldown_duration = 0.05f;
 		const float tripple_laser_position_offset = 30.f;
+
+		float elapsedShieldDuration;
+		float elapsedRapidFireDuration;
+		float elapsedTrippleLaserDuration;
 
 		PlayerModel();
 		~PlayerModel();

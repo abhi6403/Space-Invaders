@@ -51,7 +51,7 @@ namespace Player
 			break;
 
 		case::Player::PlayerState::FROZEN:
-			updateFreezeDuration();
+			updateFreezDuration();
 			break;
 		}
 
@@ -85,6 +85,11 @@ namespace Player
 		return player_view->getPlayerSprite();
 	}
 
+	Entity::EntityType PlayerController::getOwnerEntityType()
+	{
+		return player_model->getOwnerEntityType();
+	}
+
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
 		if (processPowerupCollision(other_collider))
@@ -105,9 +110,16 @@ namespace Player
 
 		if (bullet_Controller && bullet_Controller->getOwnerEntityType() != EntityType::PLAYER)
 		{
-			if (bullet_Controller->getBulletType() == BulletType::FROST_BULLET) freezePlayer();
-			else decreasePlayerlive();
-			return true;
+			if (bullet_Controller->getBulletType() == BulletType::FROST_BULLET)
+			{
+				player_model->setPlayerState(PlayerState::FROZEN);
+				elapsed_freez_duration = player_model->freez_duration;
+			}
+			else
+			{
+				decreasePlayerlive();
+				return true;
+			}
 		}
 		return false;
 	}
@@ -163,10 +175,10 @@ namespace Player
 		}
 	}
 
-	void PlayerController::freezePlayer()
+	void PlayerController::freezPlayer()
 	{
 		player_model->setPlayerState(PlayerState::FROZEN);
-		elapsed_freez_duration = player_model->freeze_duration;
+		elapsed_freez_duration = player_model->freez_duration;
 		player_view->setPlayerHighlight(true);
 	}
 
@@ -254,7 +266,7 @@ namespace Player
 		}
 	}
 
-	void PlayerController::updateFreezeDuration()
+	void PlayerController::updateFreezDuration()
 	{
 		if (elapsed_freez_duration > 0)
 		{
@@ -263,7 +275,7 @@ namespace Player
 			if (elapsed_freez_duration <= 0)
 			{
 				player_model->setPlayerState(PlayerState::ALIVE);
-				player_view->setPlayerHighlight(false);
+				player_view->setPlayerHighlight(true);
 			}
 		}
 	}

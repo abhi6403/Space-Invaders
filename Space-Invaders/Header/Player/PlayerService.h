@@ -25,8 +25,6 @@ namespace Player
         void enableTrippleLaser();
 
         void increaseEnemiesKilled(int val);
-        void increaseScore(int val);
-        void decreaseScore(int val);
 
         void reset();
     };
