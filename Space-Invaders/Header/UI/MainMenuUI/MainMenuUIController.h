@@ -3,6 +3,7 @@
 #include"../../Header/UI/Interface/IUIController.h"
 #include"../../Header/UI/UIElement/ImageView.h"
 #include"../../Header/UI/UIElement/ButtonView.h"
+#include"../../Header/UI/UIElement/TextView.h"
 
 namespace UI
 {
@@ -11,6 +12,7 @@ namespace UI
 		class MainMenuUIController : public Interface::IUIController
 		{
 		private:
+			const sf::Color text_color = sf::Color::White;
 
 			const float button_width = 400.f;
 			const float button_height = 140.f;
@@ -29,10 +31,11 @@ namespace UI
 
 			void createImage();
 			void createButtons();
+
 			void initializeBackgroundImage();
 			void initializeButtons();
-			void registerButtonCallback();
 
+			void registerButtonCallback();
 			void playButtonCallback();
 			void instructionsButtonCallback();
 			void quitButtonCallback();
