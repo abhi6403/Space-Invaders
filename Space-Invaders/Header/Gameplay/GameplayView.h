@@ -4,21 +4,20 @@
 
 namespace Gameplay
 {
+	class GamePlayController;
+
 	class GameplayView
 	{
 	private:
 		
-		const float background_sprite_width = 1920.0f;
-		const float background_sprite_height = 1080.0f;
+		sf::RenderWindow* game_window;
+		sf::Texture background_texture;
+		sf::Sprite background_sprite;
 
+		GamePlayController* gameplay_controller;
 		UI::UIElement::ImageView* background_image;
 
-		void createUIElements();
-		void initializeImage();
-		sf::String getBackgroundTexturePath();
-
-		void destroy();
-
+		void initializeBackgroundImage();
 	public:
 		GameplayView();
 		~GameplayView();

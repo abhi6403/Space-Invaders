@@ -11,46 +11,36 @@ namespace Gameplay
 
 	GameplayView::GameplayView()
 	{
-		createUIElements();
+		background_image = new ImageView();
 	}
 
 	GameplayView::~GameplayView()
 	{
-		destroy();
-	}
-
-	void GameplayView::createUIElements()
-	{
-		background_image = new ImageView();
+		delete(background_image);
 	}
 
 	void GameplayView::initialize()
 	{
-		initializeImage();
+		initializeBackgroundImage();
 	}
 
-	void GameplayView::initializeImage()
+	void GameplayView::initializeBackgroundImage()
 	{
-		background_image->initialize(getBackgroundTexturePath(), background_sprite_width, background_sprite_height, sf::Vector2f(0, 0));
+		sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+		background_image->initialize(Config::background_texture_path,
+			game_window->getSize().x,
+			game_window->getSize().y,
+			sf::Vector2f(0, 0));
 	}
 
 	void GameplayView::update()
 	{
-
+		background_image->update();
 	}
 
 	void GameplayView::render()
 	{
 		background_image->render();
-	}
-
-	sf::String GameplayView::getBackgroundTexturePath()
-	{
-		return Config::background_texture_path;
-	}
-
-	void GameplayView::destroy()
-	{
-		delete(background_image);
 	}
 }
