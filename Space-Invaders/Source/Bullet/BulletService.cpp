@@ -109,11 +109,11 @@ namespace Bullet
 
 	void BulletService::destroyBullet(BulletController* bullet_controller)
 	{
-	   /*if (std::find(flagged_bullet_list.begin(), flagged_bullet_list.end(), bullet_controller) == flagged_bullet_list.end())
+	    if (std::find(flagged_bullet_list.begin(), flagged_bullet_list.end(), bullet_controller) == flagged_bullet_list.end())
 		{
-			flagged_bullet_list.push_back(bullet_controller);
-			projectile_list.erase(std::remove(projectile_list.begin(), projectile_list.end(), bullet_controller), projectile_list.end());
-		}*/
+			//flagged_bullet_list.push_back(bullet_controller);
+			//projectile_list.erase(std::remove(projectile_list.begin(), projectile_list.end(), bullet_controller), projectile_list.end());
+		}
 	}
 
 	void BulletService::reset()

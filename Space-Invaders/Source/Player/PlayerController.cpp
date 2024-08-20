@@ -120,8 +120,9 @@ namespace Player
 				decreasePlayerlive();
 				return true;
 			}
+			return false;
 		}
-		return false;
+		
 	}
 
 	bool PlayerController::processEnemyCollision(ICollider* other_collider)
@@ -179,7 +180,7 @@ namespace Player
 	{
 		player_model->setPlayerState(PlayerState::FROZEN);
 		elapsed_freez_duration = player_model->freez_duration;
-		player_view->setPlayerHighlight(true);
+		player_view->setPlayerHighlight(false);
 	}
 
 	void PlayerController::enableShield()
@@ -270,12 +271,12 @@ namespace Player
 	{
 		if (elapsed_freez_duration > 0)
 		{
-			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			elapsed_freez_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (elapsed_freez_duration <= 0)
 			{
 				player_model->setPlayerState(PlayerState::ALIVE);
-				player_view->setPlayerHighlight(true);
+				player_view->setPlayerHighlight(false);
 			}
 		}
 	}
@@ -318,8 +319,9 @@ namespace Player
 
 	void PlayerController::decreasePlayerlive()
 	{
-		PlayerModel::player_lives -= 1;
-		if (PlayerModel::player_lives <= 0)
+		player_model->player_lives -= 1;
+
+		if (player_model->player_lives <= 0)
 		{
 			reset();
 		}

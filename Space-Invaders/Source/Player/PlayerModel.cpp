@@ -4,7 +4,6 @@ namespace Player
 {
 	int PlayerModel::player_lives;
 	int PlayerModel::enemies_killed;
-	int PlayerModel::bullets_fired;
 
 	PlayerModel::PlayerModel()
 	{
