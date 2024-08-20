@@ -1,47 +1,32 @@
 #include "../../Header/Enemy/Controllers/SubZeroController.h"
 #include "../../Header/Enemy/EnemyModel.h"
-#include"../../Header/Enemy/EnemyView.h"
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
-#include"../../Header/Bullet/BulletConfig.h"
-#include"../../Header/Entity/EntityConfig.h"
+
 
 namespace Enemy
 {
-
 	using namespace Global;
 	using namespace Bullet;
-	using namespace Time;
 
 	namespace Controller
 	{
-		SubzeroController::SubzeroController(EnemyType type) :EnemyController(type)
+
+		SubZeroController::SubZeroController(EnemyType type) : EnemyController(type) { }
+
+		SubZeroController::~SubZeroController()
 		{
 
 		}
 
-		SubzeroController::~SubzeroController()
-		{ 
-
-		}
-
-		void SubzeroController::initialize()
+		void SubZeroController::initialize()
 		{
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(MovementDirection::DOWN);
-
 			rate_of_fire = subzero_rate_of_fire;
-			vertical_movement_speed = subzero_vertical_movement_speed;
 		}
 
-		void SubzeroController::fireBullet()
-		{
-			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BULLET,enemy_model->getOwnerEntityType(),
-				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
-				Bullet::MovementDirection::DOWN);
-		}
-
-		void SubzeroController::move()
+		void SubZeroController::move()
 		{
 			switch (enemy_model->getMovementDirection())
 			{
@@ -51,17 +36,19 @@ namespace Enemy
 			}
 		}
 
-		void SubzeroController::moveDown()
+		void SubZeroController::moveDown()
 		{
-			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+			sf::Vector2f currentPosition = enemy_model->getEnemyCurrentPostion();
 			currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			enemy_model->setEnemyPosition(currentPosition);
+			enemy_model->setEnemyCurrentPostion(currentPosition);
 		}
 
-		void SubzeroController::destroy()
+		void SubZeroController::fireBullet()
 		{
-			EnemyController::destroy();
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BULLET, Entity::EntityType::ENEMY,
+				enemy_model->getEnemyCurrentPostion() + enemy_model->barrel_position_offset,
+				Bullet::MovementDirection::DOWN);
 		}
 	}
 }

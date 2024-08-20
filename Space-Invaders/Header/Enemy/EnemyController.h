@@ -1,50 +1,54 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
-#include"../../Header/Collision/ICollider.h"
+#include "../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Entity/EntityConfig.h"
+#include "../Collision/ICollider.h"
 
 namespace Enemy
 {
-    class EnemyView;
-    class EnemyModel;
-    
-    enum class EnemyType;
-    enum class EnemyState;
+	class EnemyView;
+	class EnemyModel;
 
-    class EnemyController : public Collision::ICollider
-    {
-    protected:
+	enum class EnemyType;
+	enum class EnemyState;
 
-        float vertical_movement_speed = 30.f;
-        float horizontal_movement_speed = 200.f;
+	class EnemyController : public Collision::ICollider
+	{
+	protected:
+		EnemyModel* enemy_model;
+		EnemyView* enemy_view;
 
-        float rate_of_fire = 3.f;
-        float elapsed_fire_duration = 0.f;
+		float rate_of_fire = 3.0f;
+		float elapsed_fire_duration = 0.0f;
 
-        EnemyView* enemy_view;
-        EnemyModel* enemy_model;
+		void virtual move() = 0;
 
-        virtual void move() = 0;
+		void updateFireTimer();
+		void processBulletFire();
+		virtual void fireBullet() = 0;
 
-        void updateFireTimer();
-        void processBulletFire();
-        virtual void fireBullet() = 0;
+		sf::Vector2f getRandomInitialPosition();
+		virtual void destroy();
 
-        sf::Vector2f getRandomInitialPosition();
-        virtual void destroy();
+	public:
+		EnemyController(EnemyType type);
+		virtual ~EnemyController();
 
-    public:
-        EnemyController(EnemyType type);
-        virtual ~EnemyController();
+		void virtual initialize();
+		void update();
+		void render();
 
-        virtual void initialize();
-        void update();
-        void render();
+		sf::Vector2f getEnemyPosition();
+		void handleOutOfBounds();
 
-        sf::Vector2f getEnemyPosition();
-        EnemyState getEnemyState();
-        EnemyType getEnemyType();
+		EnemyType getEnemyType();
+		EnemyState getEnemyState();
 
-        const sf::Sprite& getColliderSprite() override;
-        virtual void onCollision(ICollider* other_collider)override;
-    };
+		Entity::EntityType getOwnerEntityType();
+
+		const sf::Sprite& getColliderSprite() override;
+		virtual void onCollision(ICollider* other_collider) override;
+
+	};
 }

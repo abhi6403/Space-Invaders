@@ -1,9 +1,9 @@
-#include"../../Header/Elements/Bunker/BunkerController.h"
-#include"../../Header/Elements/Bunker/BunkerView.h"
+#include "../../Header/Elements/Bunker/BunkerController.h"
+#include "../../Header/Elements/Bunker/BunkerView.h"
 #include "../../../Header/Bullet/BulletController.h"
 #include "../../../Header/Entity/EntityConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
-#include "../../Header/Bullet/BulletConfig.h"
+#include "../../../Header/Bullet/BulletConfig.h"
 
 namespace Element
 {
@@ -12,7 +12,6 @@ namespace Element
 		using namespace Bullet;
 		using namespace Entity;
 		using namespace Global;
-
 		BunkerController::BunkerController()
 		{
 			bunker_view = new BunkerView();
@@ -39,9 +38,9 @@ namespace Element
 			bunker_view->render();
 		}
 
-		const sf::Sprite& BunkerController::getColliderSprite() 
-		{ 
-			return bunker_view->getBunkerSprite(); 
+		sf::Vector2f BunkerController::getBunkerPosition()
+		{
+			return bunker_data.position;;
 		}
 
 		void BunkerController::onCollision(ICollider* other_collider)
@@ -54,9 +53,13 @@ namespace Element
 			}
 		}
 
-		sf::Vector2f BunkerController::getBunkerPosition()
+		const sf::Sprite& BunkerController::getColliderSprite()
 		{
-			return bunker_data.position;
+			return bunker_view->getBunkerSprite();
 		}
+
+
+
 	}
+
 }

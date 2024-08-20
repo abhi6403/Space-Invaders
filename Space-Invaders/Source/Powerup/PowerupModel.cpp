@@ -1,8 +1,7 @@
-#include"../../Header/Powerup/PowerupModel.h"
+#include "../../Header/Powerup/PowerupModel.h"
 
 namespace Powerup
 {
-
 	PowerupModel::PowerupModel(PowerupType type)
 	{
 		powerup_type = type;
@@ -28,6 +27,17 @@ namespace Powerup
 		powerup_position = position;
 	}
 
+	float PowerupModel::getPowerupSpeed()
+	{
+		return movement_speed;
+	}
+
+	void PowerupModel::setPowerupSpeed(float speed)
+	{
+		movement_speed = speed;
+
+	}
+
 	PowerupType PowerupModel::getPowerupType()
 	{
 		return powerup_type;
@@ -36,15 +46,5 @@ namespace Powerup
 	void PowerupModel::setPowerupType(PowerupType type)
 	{
 		powerup_type = type;
-	}
-
-	float PowerupModel::getMovementSpeed()
-	{
-		return movement_speed;
-	}
-
-	void PowerupModel::setMovementSpeed(float speed)
-	{
-		movement_speed = speed;
 	}
 }

@@ -1,25 +1,28 @@
-#include"../../Header/Powerup/Controllers/TripleLaserController.h"
-#include"../../Header/Global/ServiceLocator.h"
+#include "../../header/Powerup/Controllers/TripleLaserController.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Powerup
 {
-	namespace Controller
-	{
-		using namespace Global;
+    namespace Controller
+    {
+        using namespace Global;
 
-		TripleLaserController::TripleLaserController(PowerupType type) :PowerupController(type)
-		{
+        TripleLaserController::TripleLaserController(PowerupType type) : PowerupController(type)
+        {
+        }
 
-		}
+        TripleLaserController::~TripleLaserController()
+        {
+        }
 
-		TripleLaserController::~TripleLaserController()
-		{
+        void TripleLaserController::onCollected()
+        {
+            applyPowerup();
+        }
 
-		}
-
-		void TripleLaserController::applyPowerup()
-		{
-			ServiceLocator::getInstance()->getPlayerService()->enableTrippleLaser();
-		}
-	}
+        void TripleLaserController::applyPowerup()
+        {
+            ServiceLocator::getInstance()->getPlayerService()->enableTrippleLaser();
+        }
+    }
 }

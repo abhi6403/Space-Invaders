@@ -1,11 +1,11 @@
-#include"../../Header/Bullet/Controllers/FrostBulletController.h"
-#include"../../Header/Bullet/BulletModel.h"
+#include "../../Header/Bullet/Controllers/FrostBulletController.h"
+#include "../../Header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
 	namespace Controller
 	{
-		FrostBulletController::FrostBulletController(BulletType bullet_type, Entity::EntityType owner_type) :BulletController(bullet_type,owner_type)
+		FrostBulletController::FrostBulletController(BulletType type, Entity::EntityType owner_type) : BulletController(type, owner_type)
 		{
 
 		}
@@ -15,10 +15,10 @@ namespace Bullet
 
 		}
 
-		void FrostBulletController::initialize(sf::Vector2f position, MovementDirection direction)
+		void FrostBulletController::initialize(sf::Vector2f position, Bullet::MovementDirection direction)
 		{
 			BulletController::initialize(position, direction);
-			bullet_model->setMovementSpeed(frost_bullet_movement_speed);
+			bullet_model->setMovementSpeed(frostbullet_movement_speed);
 		}
 	}
 }

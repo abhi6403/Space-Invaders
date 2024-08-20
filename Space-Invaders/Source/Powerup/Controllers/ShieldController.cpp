@@ -1,25 +1,28 @@
-#include"../../Header/Powerup/Controllers/ShieldController.h"
-#include"../../Header/Global/ServiceLocator.h"
+#include "../../header/Powerup/Controllers/ShieldController.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Powerup
 {
-	namespace Controller
-	{
-		using namespace Global;
+    namespace Controller
+    {
+        using namespace Global;
 
-		ShieldController::ShieldController(PowerupType type) :PowerupController(type)
-		{
+        ShieldController::ShieldController(PowerupType type) : PowerupController(type)
+        {
+        }
 
-		}
+        ShieldController::~ShieldController()
+        {
+        }
 
-		ShieldController::~ShieldController()
-		{
+        void ShieldController::onCollected()
+        {
+            applyPowerup();
+        }
 
-		}
-
-		void ShieldController::applyPowerup()
-		{
-			ServiceLocator::getInstance()->getPlayerService()->enableShield();
-		};
-	}
+        void ShieldController::applyPowerup()
+        {
+            ServiceLocator::getInstance()->getPlayerService()->enableShield();
+        }
+    }
 }

@@ -1,38 +1,39 @@
 #pragma once
-#include<SFML/Graphics.hpp>
-#include"../../Header/Entity/EntityConfig.h"
+#include <SFML/Graphics.hpp>
+#include "../../Header/Entity/EntityConfig.h"
 
 namespace Bullet
 {
-	enum class BulletType;
 	enum class MovementDirection;
+	enum class BulletType;
 
 	class BulletModel
 	{
 	private:
-		float movement_speed = 300.f;
+		MovementDirection movement_direction;
 		sf::Vector2f bullet_position;
-
 		BulletType bullet_type;
 		Entity::EntityType owner_type;
-		MovementDirection movement_direction;
+		float movement_speed = 300.0f;
 
 	public:
-		BulletModel(BulletType bullet_type, Entity::EntityType owner_type);
+		BulletModel(BulletType type, Entity::EntityType entity_type);
 		~BulletModel();
 
 		void initialize(sf::Vector2f position, MovementDirection direction);
 
-		sf::Vector2f getBulletPosition();
-		void setBulletPosition(sf::Vector2f position);
-		
-		BulletType getBulletType();
-		Entity::EntityType getOwnerEntityType();
-
 		MovementDirection getMovementDirection();
 		void setMovementDirection(MovementDirection direction);
 
+		sf::Vector2f getBulletPosition();
+		void setBulletPosition(sf::Vector2f position);
+
+		BulletType getBulletType();
+		void setBulletType(BulletType type);
+
 		float getMovementSpeed();
 		void setMovementSpeed(float speed);
+
+		Entity::EntityType getOwnerEntityType();
 	};
 }

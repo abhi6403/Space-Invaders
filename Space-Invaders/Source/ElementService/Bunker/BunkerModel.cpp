@@ -1,4 +1,4 @@
-#include"../../Header/Elements/Bunker/BunkerModel.h"
+#include "../../Header/Elements/Bunker/BunkerModel.h"
 
 namespace Element
 {
@@ -7,7 +7,7 @@ namespace Element
 		BunkerData::BunkerData()
 		{
 
-		};
+		}
 
 		BunkerData::BunkerData(sf::Vector2f position)
 		{

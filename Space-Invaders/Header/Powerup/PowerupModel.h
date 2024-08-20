@@ -1,5 +1,6 @@
 #pragma once
-#include<SFML/Graphics.hpp>
+
+#include <SFML/Graphics.hpp>
 
 namespace Powerup
 {
@@ -8,9 +9,8 @@ namespace Powerup
 	class PowerupModel
 	{
 	private:
-		float movement_speed = 300.f;
-
 		sf::Vector2f powerup_position;
+		float movement_speed = 300.0f;
 		PowerupType powerup_type;
 
 	public:
@@ -22,10 +22,11 @@ namespace Powerup
 		sf::Vector2f getPowerupPosition();
 		void setPowerupPosition(sf::Vector2f position);
 
+		float getPowerupSpeed();
+		void setPowerupSpeed(float speed);
+
 		PowerupType getPowerupType();
 		void setPowerupType(PowerupType type);
 
-		float getMovementSpeed();
-		void setMovementSpeed(float speed);
 	};
 }

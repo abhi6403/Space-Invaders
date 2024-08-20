@@ -1,21 +1,20 @@
 #pragma once
-#include"../../Header/Powerup/PowerupController.h"
+
+#include "../../header/Powerup/PowerupController.h"
 
 namespace Powerup
 {
-	namespace Controller
-	{
-		class TripleLaserController : public PowerupController
-		{
-		protected:
-			void applyPowerup()override;
+    namespace Controller
+    {
+        class TripleLaserController : public PowerupController
+        {
+        public:
+            TripleLaserController(PowerupType type);
+            virtual ~TripleLaserController();
 
-		public:
-			TripleLaserController(PowerupType type);
-			virtual ~TripleLaserController();
+            void onCollected() override;
 
-			
-
-		};
-	}
+            void applyPowerup();
+        };
+    }
 }

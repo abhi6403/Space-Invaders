@@ -1,7 +1,8 @@
 #pragma once
+
 #include<SFML/Graphics.hpp>
-#include"../../Header/Elements/Bunker/BunkerModel.h"
-#include"../../Header/Collision/ICollider.h"
+#include "../../Header/Elements/Bunker/BunkerModel.h"
+#include "../../Collision/ICollider.h"
 
 namespace Element
 {
@@ -27,7 +28,7 @@ namespace Element
 
 			const sf::Sprite& getColliderSprite() override;
 			void onCollision(ICollider* other_collider) override;
+
 		};
 	}
-	
 }

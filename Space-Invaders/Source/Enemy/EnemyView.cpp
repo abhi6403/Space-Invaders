@@ -3,7 +3,7 @@
 #include "../../Header/Graphic/GraphicService.h"
 #include "../../Header/Enemy/EnemyController.h"
 #include"../../Header/Enemy/EnemyConfig.h"
-#include"../../Header/Global/Config.h"
+#include "../../Header/Global/Config.h"
 
 namespace Enemy
 {
@@ -11,15 +11,20 @@ namespace Enemy
 	using namespace Graphic;
 	using namespace UI::UIElement;
 
-
-	EnemyView::EnemyView() 
+	EnemyView::EnemyView()
 	{
 		createUIElements();
 	}
 
-	EnemyView::~EnemyView() 
+	EnemyView::~EnemyView()
 	{
 		destroy();
+	}
+
+
+	void EnemyView::createUIElements()
+	{
+		enemy_image = new ImageView();
 	}
 
 	void EnemyView::initialize(EnemyController* controller)
@@ -28,14 +33,9 @@ namespace Enemy
 		initializeImage();
 	}
 
-	void EnemyView::createUIElements()
-	{
-		enemy_image = new ImageView();
-	}
-
 	void EnemyView::initializeImage()
 	{
-		enemy_image->initialize(getEnemyTexturePath(),  enemy_sprite_width, enemy_sprite_height, enemy_controller->getEnemyPosition());
+		enemy_image->initialize(getEnemyTexturePath(), enemy_sprite_width, enemy_sprite_height, enemy_controller->getEnemyPosition());
 	}
 
 	void EnemyView::update()
@@ -49,10 +49,6 @@ namespace Enemy
 		enemy_image->render();
 	}
 
-	const sf::Sprite& EnemyView::getEnemySprite()
-	{
-		return enemy_image->getSprite();
-	}
 
 	sf::String EnemyView::getEnemyTexturePath()
 	{
@@ -69,13 +65,19 @@ namespace Enemy
 
 		case::Enemy::EnemyType::UFO:
 			return Config::ufo_texture_path;
+
 		}
 	}
 
-	
 	void EnemyView::destroy()
 	{
 		delete(enemy_image);
 	}
+
+	const sf::Sprite& EnemyView::getEnemySprite()
+	{
+		return enemy_image->getSprite();
+	}
+
 
 }

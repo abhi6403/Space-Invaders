@@ -1,21 +1,18 @@
-#include"../../Header/Collision/CollisionService.h"
-#include"../../Header/Collision/ICollider.h"
+#include "../../Header/Collision/CollisionService.h"
+#include "../../header/Collision/ICollider.h"
 
 namespace Collision
 {
 	CollisionService::CollisionService()
 	{
-
 	}
 
 	CollisionService::~CollisionService()
 	{
-
 	}
 
 	void CollisionService::initialize()
 	{
-
 	}
 
 	void CollisionService::update()
@@ -25,9 +22,9 @@ namespace Collision
 
 	void CollisionService::processCollision()
 	{
-		for (int i= 0; i < collider_list.size(); i++)
+		for (int i = 0; i < collider_list.size(); i++)
 		{
-			for (int j = i ; j < collider_list.size(); j++)
+			for (int j = i + 1; j < collider_list.size(); j++)
 			{
 				doCollision(i, j);
 			}
@@ -37,9 +34,9 @@ namespace Collision
 	void CollisionService::doCollision(int index_i, int index_j)
 	{
 		if (collider_list[index_i]->getCollisionState() == CollisionState::DISABLED ||
-			collider_list[index_j]->getCollisionState() == CollisionState::DISABLED)return;
+			collider_list[index_j]->getCollisionState() == CollisionState::DISABLED) return;
 
-		if (hasCollisionOccured(index_i, index_j))
+		if (hasCollisionOccurred(index_i, index_j))
 		{
 			if (areActiveColliders(index_i, index_j))
 				collider_list[index_i]->onCollision(collider_list[index_j]);
@@ -49,7 +46,7 @@ namespace Collision
 		}
 	}
 
-	bool CollisionService::hasCollisionOccured(int index_i, int index_j)
+	bool CollisionService::hasCollisionOccurred(int index_i, int index_j)
 	{
 		const sf::Sprite& collider_one_sprite = collider_list[index_i]->getColliderSprite();
 		const sf::Sprite& collider_two_sprite = collider_list[index_j]->getColliderSprite();
@@ -59,7 +56,7 @@ namespace Collision
 
 	bool CollisionService::areActiveColliders(int index_i, int index_j)
 	{
-		return(index_i < collider_list.size() && index_j < collider_list.size() &&
+		return (index_i < collider_list.size() && index_j < collider_list.size() &&
 			collider_list[index_i] != nullptr && collider_list[index_j] != nullptr);
 	}
 
@@ -72,5 +69,4 @@ namespace Collision
 	{
 		collider_list.erase(std::remove(collider_list.begin(), collider_list.end(), collider), collider_list.end());
 	}
-	
 }

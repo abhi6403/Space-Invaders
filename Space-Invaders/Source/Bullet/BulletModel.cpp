@@ -1,14 +1,11 @@
-#include"../../Header/Bullet/BulletModel.h"
-#include"../../Header/Bullet/BulletConfig.h"
+#include "../../Header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
-	using namespace Entity;
-
-	BulletModel::BulletModel(BulletType bullet_type,Entity::EntityType owner_type)
+	BulletModel::BulletModel(BulletType type, Entity::EntityType type_of_owner)
 	{
-		this->bullet_type = bullet_type;
-		this->owner_type = owner_type;
+		bullet_type = type;
+		owner_type = type_of_owner;
 	}
 
 	BulletModel::~BulletModel()
@@ -18,33 +15,13 @@ namespace Bullet
 
 	void BulletModel::initialize(sf::Vector2f position, MovementDirection direction)
 	{
-		
+		bullet_position = position;
 		movement_direction = direction;
-		bullet_position = position;
 	}
 
-	sf::Vector2f BulletModel::getBulletPosition()
+	MovementDirection BulletModel::getMovementDirection()
 	{
-		
-		return bullet_position;
-	}
-
-	void BulletModel::setBulletPosition(sf::Vector2f position)
-	{
-		
-		bullet_position = position;
-	}
-
-	Entity::EntityType BulletModel::getOwnerEntityType()
-	{
-		
-		return owner_type;
-	}
-
-	BulletType BulletModel::getBulletType()
-	{
-		
-		return bullet_type;
+		return movement_direction;
 	}
 
 	void BulletModel::setMovementDirection(MovementDirection direction)
@@ -52,9 +29,24 @@ namespace Bullet
 		movement_direction = direction;
 	}
 
-	MovementDirection BulletModel::getMovementDirection()
+	sf::Vector2f BulletModel::getBulletPosition()
 	{
-		return movement_direction;
+		return bullet_position;
+	}
+
+	void BulletModel::setBulletPosition(sf::Vector2f position)
+	{
+		bullet_position = position;
+	}
+
+	BulletType BulletModel::getBulletType()
+	{
+		return bullet_type;
+	}
+
+	void BulletModel::setBulletType(BulletType type)
+	{
+		bullet_type = type;
 	}
 
 	float BulletModel::getMovementSpeed()
@@ -65,5 +57,10 @@ namespace Bullet
 	void BulletModel::setMovementSpeed(float speed)
 	{
 		movement_speed = speed;
+	}
+
+	Entity::EntityType BulletModel::getOwnerEntityType()
+	{
+		return owner_type;
 	}
 }

@@ -4,10 +4,11 @@
 #include "../../Header/Time/TimeService.h"
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Enemy/Controllers/SubZeroController.h"
-#include"../../Header/Enemy/Controllers/ZapperController.h"
-#include"../../Header/Enemy/Controllers/ThunderSnakeController.h"
-#include"../../Header/Enemy/Controllers/UFOController.h"
-#include"../../Header/Collision/ICollider.h"
+#include "../../Header/Enemy/Controllers/ZapperController.h"
+#include "../../Header/Enemy/Controllers/ThunderSnakeController.h"
+#include "../../Header/Enemy/Controllers/UFOController.h"
+#include "../../Header/Collision/ICollider.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace Enemy
 {
@@ -15,20 +16,21 @@ namespace Enemy
 	using namespace Time;
 	using namespace Controller;
 	using namespace Collision;
+	using namespace Sound;
 
 	EnemyService::EnemyService()
-	{ 
+	{
 		std::srand(static_cast<unsigned>(std::time(nullptr)));
 	}
 
-	EnemyService::~EnemyService() 
+	EnemyService::~EnemyService()
 	{
 		destroy();
 	}
 
 	void EnemyService::initialize()
 	{
-		spawn_timer = spawn_interval; 
+		spawn_timer = spawn_interval;
 	}
 
 	void EnemyService::update()
@@ -36,29 +38,61 @@ namespace Enemy
 		updateSpawnTimer();
 		processEnemySpawn();
 
-		for (EnemyController* enemy : enemy_list)
-			enemy->update();
-
+		for (int i = 0; i < enemy_list.size(); i++)
+		{
+			enemy_list[i]->update();
+		}
 		destroyFlaggedEnemies();
 	}
 
 	void EnemyService::render()
 	{
-		for (EnemyController* enemy : enemy_list)
-			enemy->render();
+		for (int i = 0; i < enemy_list.size(); i++)
+		{
+			enemy_list[i]->render();
+		}
 	}
 
-	void EnemyService::updateSpawnTimer()
+	EnemyController* EnemyService::SpawnEnemy()
 	{
-		spawn_timer += ServiceLocator::getInstance()->getTimeService()->getDeltaTime(); 
+		EnemyController* enemy_controller = createEnemy(getRandomEnemyType());
+		enemy_controller->initialize();
+
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(enemy_controller));
+		enemy_list.push_back(enemy_controller);
+		return enemy_controller;
 	}
 
 	void EnemyService::processEnemySpawn()
 	{
 		if (spawn_timer >= spawn_interval)
 		{
-			spawnEnemy(); 
-			spawn_timer = 0.0f; 
+			SpawnEnemy();
+			spawn_timer = 0.0f;
+		}
+	}
+
+	void EnemyService::updateSpawnTimer()
+	{
+		spawn_timer += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+
+	EnemyController* EnemyService::createEnemy(EnemyType enemy_type)
+	{
+		switch (enemy_type)
+		{
+		case::Enemy::EnemyType::SUBZERO:
+			return new SubZeroController(Enemy::EnemyType::SUBZERO);
+
+		case::Enemy::EnemyType::ZAPPER:
+			return new ZapperController(Enemy::EnemyType::ZAPPER);
+
+		case::Enemy::EnemyType::THUNDER_SNAKE:
+			return new ThunderSnakeController(Enemy::EnemyType::THUNDER_SNAKE);
+
+		case::Enemy::EnemyType::UFO:
+			return new UFOController(Enemy::EnemyType::UFO);
+
 		}
 	}
 
@@ -68,33 +102,6 @@ namespace Enemy
 		return static_cast<Enemy::EnemyType>(randomType);
 	}
 
-	EnemyController*  EnemyService::spawnEnemy()
-	{
-		EnemyController* enemy_controller = createEnemy(getRandomEnemyType());
-		enemy_controller->initialize(); 
-
-		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(enemy_controller));
-		enemy_list.push_back(enemy_controller); 
-		return enemy_controller;
-	}
-
-	EnemyController* EnemyService::createEnemy(EnemyType enemy_type)
-	{
-		switch (enemy_type)
-		{
-		case::Enemy::EnemyType::ZAPPER:
-			return new ZapperController(Enemy::EnemyType::ZAPPER);
-
-		case::Enemy::EnemyType::SUBZERO:
-			return new SubzeroController(Enemy::EnemyType::SUBZERO);
-
-		case::Enemy::EnemyType::THUNDER_SNAKE:
-			return new ThunderSnakeController(Enemy::EnemyType::THUNDER_SNAKE);
-
-		case::Enemy::EnemyType::UFO:
-			return new UFOController(Enemy::EnemyType::UFO);
-		}
-	}
 
 	void EnemyService::destroyFlaggedEnemies()
 	{
@@ -105,7 +112,6 @@ namespace Enemy
 		}
 		flagged_enemy_list.clear();
 	}
-
 
 	void EnemyService::destroyEnemy(EnemyController* enemy_controller)
 	{
@@ -127,7 +133,7 @@ namespace Enemy
 	void EnemyService::reset()
 	{
 		destroy();
-		spawn_timer = 0.f;
+		spawn_timer = 0.0f;
 	}
 
 }

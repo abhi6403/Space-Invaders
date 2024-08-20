@@ -1,24 +1,24 @@
 #pragma once
-#include<SFML/Graphics.hpp>
-#include "../../Header/UI/UIElement/ImageView.h"
+#include <SFML/Graphics.hpp>
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Bullet
 {
+	enum class BulletType;
 	class BulletController;
 
 	class BulletView
 	{
 	private:
-		const float bullet_sprite_width = 18.f;
-		const float bullet_sprite_height = 18.f;
+		const float bullet_sprite_height = 18.0f;
+		const float bullet_sprite_width = 18.0f;
 
 		BulletController* bullet_controller;
 		UI::UIElement::ImageView* bullet_image;
 
-		void initializeImage();
 		void createUIElements();
+		void initializeImage();
 		sf::String getBulletTexturePath();
-
 		void destroy();
 
 	public:
@@ -31,4 +31,7 @@ namespace Bullet
 
 		const sf::Sprite& getBulletSprite();
 	};
+
 }
+
+

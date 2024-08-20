@@ -3,26 +3,31 @@
 #include "../../header/Global/Config.h"
 #include "../../header/Powerup/PowerupController.h"
 #include "../../header/Powerup/PowerupConfig.h"
-#include"../../Header/Bullet/BulletConfig.h"
 
 namespace Powerup
 {
 	using namespace Global;
 	using namespace UI::UIElement;
 
-	PowerupView::PowerupView() { createUIElements(); }
-
-	PowerupView::~PowerupView() { destroy(); }
-
-	void PowerupView::initialize(PowerupController* controller)
+	PowerupView::PowerupView()
 	{
-		powerup_controller = controller;
-		initializeImage();
+		createUIElements();
+	}
+
+	PowerupView::~PowerupView()
+	{
+		destroy();
 	}
 
 	void PowerupView::createUIElements()
 	{
 		powerup_image = new ImageView();
+	}
+
+	void PowerupView::initialize(PowerupController* controller)
+	{
+		powerup_controller = controller;
+		initializeImage();
 	}
 
 	void PowerupView::initializeImage()
@@ -45,12 +50,12 @@ namespace Powerup
 	{
 		switch (powerup_controller->getPowerupType())
 		{
-		case::Powerup::PowerupType::TRIPPLE_LASER:
+		case::Powerup::PowerupType::SHIELD:
 			return Config::shield_texture_path;
 
-		case::Powerup::PowerupType::SHIELD:
+		case::Powerup::PowerupType::TRIPPLE_LASER:
 			return Config::tripple_laser_texture_path;
-	
+
 		case::Powerup::PowerupType::RAPID_FIRE:
 			return Config::rapid_fire_texture_path;
 
@@ -59,15 +64,15 @@ namespace Powerup
 		}
 	}
 
-	const sf::Sprite& PowerupView::getPowerupSprite()
-	{
-		return powerup_image->getSprite();
-	}
-
 	void PowerupView::destroy()
 	{
 		delete(powerup_image);
 	}
 
-	
+	const sf::Sprite& PowerupView::getPowerupSprite()
+	{
+		return powerup_image->getSprite();
+	}
+
+
 }

@@ -1,12 +1,11 @@
-#include"../../Header/Bullet/BulletController.h"
-#include"../../Header/Bullet/BulletView.h"
-#include"../../Header/Bullet/BulletModel.h"
-#include"../../Header/Bullet/BulletConfig.h"
-#include"../../Header/Global/ServiceLocator.h"
-#include"../../Header/Player/PlayerController.h"
-#include"../../Header/Enemy/EnemyController.h"
-#include"../../Header/Elements/Bunker/BunkerController.h"
-
+#include "../../Header/Bullet/BulletController.h"
+#include "../../Header/Bullet/BulletView.h"
+#include "../../Header/Bullet/BulletModel.h"
+#include "../../Header/Bullet/BulletConfig.h"
+#include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Player/PlayerController.h"
+#include "../../Header/Enemy/EnemyController.h"
+#include "../../Header/Elements/Bunker/BunkerController.h"
 
 namespace Bullet
 {
@@ -16,29 +15,26 @@ namespace Bullet
 	using namespace Enemy;
 	using namespace Element::Bunker;
 
-	BulletController::BulletController(BulletType bullet_type,EntityType owner_type)
+	BulletController::BulletController(BulletType type, Entity::EntityType owner_type)
 	{
 		bullet_view = new BulletView();
-		bullet_model = new BulletModel(bullet_type, owner_type);
+		bullet_model = new BulletModel(type, owner_type);
 	}
 
 	BulletController::~BulletController()
 	{
-		delete(bullet_view);
-		delete(bullet_model);
+		delete (bullet_view);
+		delete (bullet_model);
 	}
 
 	void BulletController::initialize(sf::Vector2f position, Bullet::MovementDirection direction)
 	{
-		
 		bullet_view->initialize(this);
 		bullet_model->initialize(position, direction);
 	}
 
-	
 	void BulletController::update()
 	{
-		
 		updateProjectilePosition();
 		bullet_view->update();
 		handleOutOfBounds();
@@ -46,24 +42,38 @@ namespace Bullet
 
 	void BulletController::render()
 	{
-		
 		bullet_view->render();
 	}
 
-	void BulletController::moveUP()
+	void BulletController::updateProjectilePosition()
 	{
+		switch (bullet_model->getMovementDirection())
+		{
+		case::Bullet::MovementDirection::UP:
+			moveUp();
+			break;
 
+		case::Bullet::MovementDirection::DOWN:
+			moveDown();
+			break;
+		}
+	}
+
+	void BulletController::moveUp()
+	{
 		sf::Vector2f currentPosition = bullet_model->getBulletPosition();
 		currentPosition.y -= bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
 		bullet_model->setBulletPosition(currentPosition);
 	}
 
 	void BulletController::moveDown()
 	{
-		
 		sf::Vector2f currentPosition = bullet_model->getBulletPosition();
 		currentPosition.y += bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
 		bullet_model->setBulletPosition(currentPosition);
+
 	}
 
 	void BulletController::handleOutOfBounds()
@@ -80,50 +90,25 @@ namespace Bullet
 
 	sf::Vector2f BulletController::getProjectilePosition()
 	{
-		
 		return bullet_model->getBulletPosition();
 	}
 
 	BulletType BulletController::getBulletType()
 	{
-		
 		return bullet_model->getBulletType();
 	}
 
 	Entity::EntityType BulletController::getOwnerEntityType()
 	{
-		
 		return bullet_model->getOwnerEntityType();
-	}
-
-	const sf::Sprite& BulletController::getColliderSprite()
-	{
-		
-		return bullet_view->getBulletSprite();
 	}
 
 	void BulletController::onCollision(ICollider* other_collider)
 	{
-		
 		processPlayerCollision(other_collider);
 		processEnemyCollision(other_collider);
 		processBunkerCollision(other_collider);
 		processBulletCollision(other_collider);
-	}
-
-	void BulletController::updateProjectilePosition()
-	{
-		
-		switch (bullet_model->getMovementDirection())
-		{
-		case::Bullet::MovementDirection::UP:
-			moveUP();
-			break;
-
-		case::Bullet::MovementDirection::DOWN:
-			moveDown();
-			break;
-		}
 	}
 
 	void BulletController::processBulletCollision(ICollider* other_collider)
@@ -160,5 +145,10 @@ namespace Bullet
 
 		if (bunker_controller)
 			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+	}
+
+	const sf::Sprite& BulletController::getColliderSprite()
+	{
+		return bullet_view->getBulletSprite();
 	}
 }

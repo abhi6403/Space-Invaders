@@ -2,31 +2,26 @@
 
 namespace Player
 {
-    class PlayerController;
+	class PlayerController;
 
-    class PlayerService
-    {
+	class PlayerService
+	{
+	private:
+		PlayerController* player_controller;
 
-    private:
+	public:
+		PlayerService();
+		~PlayerService();
 
-        PlayerController* player_controller;
+		void initialize();
+		void update();
+		void render();
 
-    public:
+		void enableShield();
+		void enableRapidFire();
+		void enableTrippleLaser();
 
-        PlayerService();
-        ~PlayerService();
-
-        void initialize();
-        void update();
-        void render();
-
-        void enableShield();
-        void enableRapidFire();
-        void enableTrippleLaser();
-
-        void increaseEnemiesKilled(int val);
-
-        void reset();
-    };
+		void reset();
+		void increaseEnemiesKilled(int val);
+	};
 }
-

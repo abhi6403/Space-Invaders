@@ -1,27 +1,28 @@
 #pragma once
-#include"../../Header/Collectible/ICollectible.h"
-#include<vector>
-#include"SFML/System/Vector2.hpp"
+
+#include <SFML/System/Vector2.hpp>
+#include <vector>
+#include "../../Header/Collectible/ICollectible.h"
+#include "../../Header/Collectible/ICollectible.h"
 
 namespace Powerup
 {
-	enum class PowerupType;
 	class PowerupController;
-	enum class MovementDirection;
+	enum class PowerupType;
 
 	class PowerupService
 	{
 	private:
 		std::vector<Collectible::ICollectible*> powerup_list;
-		std::vector<Collectible::ICollectible*>flagged_power_up_list;
+		std::vector<Collectible::ICollectible*> flagged_powerup_list;
 
 		PowerupController* createPowerup(PowerupType powerup_type);
-		void destroy();
 		void destroyFlaggedPowerup();
+		void destroy();
 
 	public:
 		PowerupService();
-		~PowerupService();
+		virtual ~PowerupService();
 
 		void initialize();
 		void update();

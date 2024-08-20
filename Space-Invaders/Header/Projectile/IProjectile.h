@@ -1,6 +1,6 @@
 #pragma once
-#include<SFML/System/Vector2.hpp>
-#include"../../Header/Bullet/BulletConfig.h"
+#include <SFML/System/Vector2.hpp>
+#include "../../Header/Bullet/BulletConfig.h"
 
 namespace Projectile
 {
@@ -9,12 +9,15 @@ namespace Projectile
 	class IProjectile
 	{
 	public:
+		MovementDirection movement_direction;
+		sf::Vector2f position;
+
 		virtual void initialize(sf::Vector2f position, Bullet::MovementDirection direction) = 0;
 		virtual void update() = 0;
 		virtual void render() = 0;
 
 		virtual void updateProjectilePosition() = 0;
-		virtual sf::Vector2f  getProjectilePosition() = 0;
+		virtual sf::Vector2f getProjectilePosition() = 0;
 
 		virtual ~IProjectile() {};
 	};

@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include"../../Header/UI/UIElement/ImageView.h"
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Player
 {
@@ -9,17 +9,20 @@ namespace Player
 	class PlayerView
 	{
 	private:
-	
-		const float player_sprite_width = 60.0f;
-		const float player_sprite_height = 60.0f;
-		
+		const float player_sprite_width = 60.f;
+		const float player_sprite_height = 60.f;
+
+		const float shield_sprite_width = 120.f;
+		const float shield_sprite_height = 120.f;
 
 		PlayerController* player_controller;
+
 		UI::UIElement::ImageView* player_image;
+		UI::UIElement::ImageView* player_shield;
 
 		void createUIElements();
 		void initializeImage();
-
+		sf::String getPlayerTexturePath();
 		void destroy();
 
 	public:
@@ -30,8 +33,7 @@ namespace Player
 		void update();
 		void render();
 
-		void setPlayerHighlight(bool b_highlight);
 		const sf::Sprite& getPlayerSprite();
-
+		void setPlayerHighlight(bool b_highlight);
 	};
 }

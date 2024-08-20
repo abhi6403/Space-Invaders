@@ -1,10 +1,11 @@
-#include"../../Header/Bullet/Controllers/LaserBulletController.h"
+#include "../../Header/Bullet/Controllers/LaserBulletController.h"
+#include "../../Header/Bullet/BulletController.h"
 
 namespace Bullet
 {
 	namespace Controller
 	{
-		LaserBulletController::LaserBulletController(BulletType bullet_type, Entity::EntityType owner_type):BulletController(bullet_type,owner_type)
+		LaserBulletController::LaserBulletController(BulletType type, Entity::EntityType owner_type) : BulletController(type, owner_type)
 		{
 
 		}
@@ -14,7 +15,7 @@ namespace Bullet
 
 		}
 
-		void LaserBulletController::initialize(sf::Vector2f position, MovementDirection direction)
+		void LaserBulletController::initialize(sf::Vector2f position, Bullet::MovementDirection direction)
 		{
 			BulletController::initialize(position, direction);
 		}

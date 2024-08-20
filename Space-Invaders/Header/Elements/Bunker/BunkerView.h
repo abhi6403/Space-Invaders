@@ -1,36 +1,36 @@
-#pragma once
-#include<SFML/Graphics.hpp>
-#include"../../Header/UI/UIElement/ImageView.h"
+#include <SFML/Graphics.hpp>
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Element
 {
-	namespace Bunker
-	{
-		class BunkerController;
-		
-		class BunkerView
-		{
-		private:
-			const float bunker_sprite_width = 80.f;
-			const float bunker_sprite_height = 80.f;
+    namespace Bunker
+    {
+        class BunkerController;
 
-			BunkerController* bunker_controller;
-			UI::UIElement::ImageView* bunker_image;
+        class BunkerView
+        {
+        private:
+            const float bunker_sprite_width = 80.f;
+            const float bunker_sprite_height = 80.f;
 
-			void createUIElements();
-			void initializeImage();
+            BunkerController* bunker_controller;
 
-			void destroy();
+            UI::UIElement::ImageView* bunker_image;
 
-		public:
-			BunkerView();
-			~BunkerView();
+            void createUIElements();
+            void initializeImage();
+            sf::String getBunkerTexturePath();
+            void destroy();
 
-			void initialize(BunkerController* controller);
-			void update();
-			void render();
+        public:
+            BunkerView();
+            ~BunkerView();
 
-			const sf::Sprite& getBunkerSprite();
-		};
-	}
+            void initialize(BunkerController* controller);
+            void update();
+            void render();
+
+            const sf::Sprite& getBunkerSprite();
+        };
+    }
 }

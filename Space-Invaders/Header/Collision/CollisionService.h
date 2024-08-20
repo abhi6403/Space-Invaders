@@ -1,5 +1,6 @@
 #pragma once
-#include<vector>
+
+#include <vector>
 
 namespace Collision
 {
@@ -8,11 +9,11 @@ namespace Collision
 	class CollisionService
 	{
 	private:
-		std::vector<ICollider*> collider_list;
+		std::vector <ICollider*> collider_list;
 
 		void processCollision();
 		void doCollision(int index_i, int index_j);
-		bool hasCollisionOccured(int index_i, int index_j);
+		bool hasCollisionOccurred(int index_i, int index_j);
 		bool areActiveColliders(int index_i, int index_j);
 
 	public:

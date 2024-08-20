@@ -1,86 +1,92 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include"../../Header/Entity/EntityConfig.h"
-#include"../../Header/UI/GameplayUI/GameplayUIController.h"
+#include "../../Header/Entity/EntityConfig.h"
+#include "../../header/UI/GameplayUI/GameplayUIController.h"
 
 namespace Player
 {
-	enum class PlayerState
-	{
-		ALIVE,
-		DEAD,
-		FROZEN,
-	};
+    enum class PlayerState
+    {
+        ALIVE,
+        DEAD,
+        FROZEN,
+    };
 
-	class PlayerModel
-	{
-	private:
+    class PlayerModel
+    {
+    private:
 
-		friend class PlayerController;
+        friend class PlayerController;
 
-		friend void UI::GameplayUI::GameplayUIController::updateEnemiesKilledText();
-		friend void UI::GameplayUI::GameplayUIController::drawPlayerLives();
+        friend void UI::GameplayUI::GameplayUIController::updateEnemiesKilledText();
+        friend void UI::GameplayUI::GameplayUIController::drawPlayerLives();
 
-		const int max_player_lives = 3;
+        const int max_player_lives = 3;
+        static int player_lives;
+        static int enemies_killed;
 
-		sf::Vector2f initial_player_position = sf::Vector2f(950.f, 950.f);
-		sf::Vector2f player_position;
+        const sf::Vector2f initial_player_position = sf::Vector2f(950.0f, 950.0f);
+        sf::Vector2f player_position;
+        PlayerState player_state;
+        int player_score;
+        Entity::EntityType owner_type;
 
-		PlayerState player_state;
-		Entity::EntityType owner_type;
+        bool b_shield;
+        bool b_rapid_fire;
+        bool b_tripple_laser;
 
-		static int player_lives;
-		static int enemies_killed;
-		static int bullets_fired;
+    public:
 
-		bool b_shield;
-		bool b_rapid_fire;
-		bool b_tripple_laser;
+        const sf::Vector2f left_most_position = sf::Vector2f(50.0f, 950.0f);
+        const sf::Vector2f right_most_position = sf::Vector2f(1800.0f, 950.0f);
+        const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 5.f);
+        const sf::Vector2f second_weapon_position_offset = sf::Vector2f(45.f, 0.f);
+        const sf::Vector2f third_weapon_position_offset = sf::Vector2f(-45.f, 0.f);
 
-	public:
-		const float player_movement_speed = 350.0f;
-		static const int invincible_player_alpha = 170.f;
+        const float shield_powerup_duration = 10.f;
+        const float rapid_fire_powerup_duration = 10.f;
+        const float tripple_laser_powerup_duration = 10.f;
 
-		const sf::Vector2f left_most_position = sf::Vector2f(50.f, 950.f);
-		const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 950.f);
-		const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 50.f);
-		const sf::Vector2f second_weapon_position_offset = sf::Vector2f(45.f, 0.f);
-		const sf::Vector2f third_weapon_position_offset = sf::Vector2f(-45.f, 0.f);
+        const float freeze_duration = 2.f;
 
-		const float shield_powerup_duration = 10.f;
-		const float rapid_fire_powerup_duration = 10.f;
-		const float tripple_laser_powerup_duration = 10.f;
+        const float fire_cooldown_duration = 0.2f;
+        const float rapid_fire_cooldown_duration = 0.05f;
+        const float tripple_laser_position_offset = 30.f;
 
-		const float freez_duration = 2.f;
-		
-		const float fire_cooldown_duration = 0.2f;
-		const float rapid_fire_cooldown_duration = 0.05f;
-		const float tripple_laser_position_offset = 30.f;
+        float elapsed_shield_duration;
+        float elapsed_rapid_fire_duration;
+        float elapsed_tripple_laser_duration;
 
-		float elapsedShieldDuration;
-		float elapsedRapidFireDuration;
-		float elapsedTrippleLaserDuration;
+        float elapsed_fire_duration;
+        float elapsed_freeze_duration;
 
-		PlayerModel();
-		~PlayerModel();
+        const float player_movement_speed = 350.0f;
+        static const int invincible_player_alpha = 170.f;
 
-		void initialize();
-		void reset();
+        PlayerModel();
+        ~PlayerModel();
 
-		sf::Vector2f getPlayerPosition();
-		void setPlayerPosition(sf::Vector2f position);
+        void initialize();
 
-		PlayerState getPlayerState();
-		void setPlayerState(PlayerState state);
+        void reset();
 
-		Entity::EntityType getOwnerEntityType();
+        sf::Vector2f getPlayerPosition();
+        void setPlayerPosition(sf::Vector2f position);
 
-		bool isShieldEnabled();
-		bool isRapidFireEnabled();
-		bool isTrippleFireEnabled();
+        PlayerState getPlayerState();
+        void setPlayerState(PlayerState state);
 
-		void setShieldState(bool value);
-		void setRapidFireState(bool value);
-		void setTrippleFireState(bool value);
-	};
+        int getPlayerScore();
+        void setPlayerScore(int score);
+
+        Entity::EntityType getOwnerEntityType();
+
+        bool isShieldEnabled();
+        bool isRapidFireEnabled();
+        bool isTrippleLaserEnabled();
+
+        void setShieldState(bool value);
+        void setRapidFireState(bool value);
+        void setTrippleFireState(bool value);
+    };
 }

@@ -1,10 +1,9 @@
-#include"../../Header/Elements/ElementService.h"
-#include"../../Header/Global/ServiceLocator.h"
-#include"../../Header/Collision/ICollider.h"
+#include "../../Header/Elements/ElementService.h"
+#include "../../header/Collision/ICollider.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Element
 {
-	using namespace Bunker;
 	using namespace Global;
 	using namespace Collision;
 
@@ -21,20 +20,7 @@ namespace Element
 	void ElementService::initialize()
 	{
 		spawnBunkers();
-	}
 
-	void ElementService::update()
-	{
-		for (Bunker::BunkerController* bunker : bunker_list)
-			bunker->update();
-
-		destroyFlaggedBunkers();
-	}
-
-	void ElementService::render()
-	{
-		for (Bunker::BunkerController* bunker : bunker_list)
-			bunker->render();
 	}
 
 	void ElementService::spawnBunkers()
@@ -47,6 +33,24 @@ namespace Element
 			bunker_list.push_back(bunker_controller);
 
 			ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bunker_controller));
+		}
+	}
+
+	void ElementService::update()
+	{
+		for (int i = 0; i < bunker_list.size(); i++)
+		{
+			bunker_list[i]->update();
+		}
+
+		destroyFlaggedBunkers();
+	}
+
+	void ElementService::render()
+	{
+		for (int i = 0; i < bunker_list.size(); i++)
+		{
+			bunker_list[i]->render();
 		}
 	}
 
@@ -65,6 +69,8 @@ namespace Element
 		}
 		flagged_bunker_list.clear();
 	}
+
+
 
 	void ElementService::destroy()
 	{

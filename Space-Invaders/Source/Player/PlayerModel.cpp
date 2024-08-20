@@ -1,4 +1,4 @@
-#include "../../header/Player/PlayerModel.h"
+#include "../../Header/Player/PlayerModel.h"
 
 namespace Player
 {
@@ -7,7 +7,7 @@ namespace Player
 
 	PlayerModel::PlayerModel()
 	{
-		owner_type = Entity::EntityType::PLAYER;
+
 	}
 
 	PlayerModel::~PlayerModel()
@@ -24,8 +24,9 @@ namespace Player
 	{
 		player_state = PlayerState::ALIVE;
 		player_position = initial_player_position;
-		player_lives = max_player_lives;
+		player_score = 0;
 
+		player_lives = max_player_lives;
 		enemies_killed = 0;
 
 		b_shield = false;
@@ -53,6 +54,16 @@ namespace Player
 		player_state = state;
 	}
 
+	int PlayerModel::getPlayerScore()
+	{
+		return player_score;
+	}
+
+	void PlayerModel::setPlayerScore(int score)
+	{
+		player_score = score;
+	}
+
 	Entity::EntityType PlayerModel::getOwnerEntityType()
 	{
 		return owner_type;
@@ -67,8 +78,8 @@ namespace Player
 	{
 		return b_rapid_fire;
 	}
-	
-	bool PlayerModel::isTrippleFireEnabled()
+
+	bool PlayerModel::isTrippleLaserEnabled()
 	{
 		return b_tripple_laser;
 	}

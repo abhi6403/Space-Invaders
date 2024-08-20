@@ -3,50 +3,52 @@
 
 namespace Enemy
 {
-	EnemyModel::EnemyModel(EnemyType type) {
-
+	EnemyModel::EnemyModel(EnemyType type)
+	{
 		enemy_type = type;
-		owner_type = Entity::EntityType::ENEMY;
-
 	}
 
-	EnemyModel::~EnemyModel() { }
+	EnemyModel::~EnemyModel()
+	{
+
+	}
 
 	void EnemyModel::initialize()
 	{
-		enemy_state = EnemyState::PATROLLING;
+		enemy_current_position = enemy_reference_position;
 		movement_direction = MovementDirection::RIGHT;
-		enemy_position = reference_position;
+		enemy_state = EnemyState::PATROLLING;
 	}
 
-	sf::Vector2f EnemyModel::getEnemyPosition()
+
+	sf::Vector2f EnemyModel::getEnemyReferencePostion()
 	{
-		return enemy_position;
+		return enemy_reference_position;
 	}
 
-	void EnemyModel::setEnemyPosition(sf::Vector2f position)
+	sf::Vector2f EnemyModel::getEnemyCurrentPostion()
 	{
-		enemy_position = position;
+		return enemy_current_position;
 	}
 
-	sf::Vector2f EnemyModel::getReferencePosition()
+	void EnemyModel::setEnemyReferencePostion(sf::Vector2f position)
 	{
-		return reference_position;
+		enemy_reference_position = position;
 	}
 
-	void EnemyModel::setReferencePosition(sf::Vector2f position)
+	void EnemyModel::setEnemyCurrentPostion(sf::Vector2f position)
 	{
-		reference_position = position;
+		enemy_current_position = position;
 	}
 
-	EnemyState EnemyModel::getEnemyState()
+	MovementDirection EnemyModel::getMovementDirection()
 	{
-		return enemy_state;
+		return movement_direction;
 	}
 
-	void EnemyModel::setEnemyState(EnemyState state)
+	void EnemyModel::setMovementDirection(MovementDirection direction)
 	{
-		enemy_state = state;
+		movement_direction = direction;
 	}
 
 	EnemyType EnemyModel::getEnemyType()
@@ -59,18 +61,18 @@ namespace Enemy
 		enemy_type = type;
 	}
 
+	EnemyState EnemyModel::getEnemyState()
+	{
+		return enemy_state;
+	}
+
+	void EnemyModel::setEnemyState(EnemyState state)
+	{
+		enemy_state = state;
+	}
+
 	Entity::EntityType EnemyModel::getOwnerEntityType()
 	{
 		return owner_type;
-	}
-
-	MovementDirection EnemyModel::getMovementDirection()
-	{
-		return movement_direction;
-	}
-
-	void EnemyModel::setMovementDirection(MovementDirection direction)
-	{
-		movement_direction = direction;
 	}
 }

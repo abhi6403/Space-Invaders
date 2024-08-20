@@ -1,17 +1,18 @@
 #pragma once
-#include"../../Header/Collectible/ICollectible.h"
-#include"../../Header/Collision/ICollider.h"
+
+#include "../../Header/Collectible/ICollectible.h"
+#include "../../Header/Powerup/PowerupConfig.h"
+#include "../../Header/Collision/ICollider.h"
 
 namespace Powerup
 {
 	class PowerupView;
 	class PowerupModel;
-
 	enum class PowerupType;
 
 	class PowerupController :public Collectible::ICollectible, public Collision::ICollider
 	{
-	protected:
+	private:
 		PowerupView* powerup_view;
 		PowerupModel* powerup_model;
 
@@ -20,20 +21,19 @@ namespace Powerup
 		void handleOutOfBounds();
 
 	public:
-		PowerupController(PowerupType type);
+		PowerupController(PowerupType power_type);
 		virtual ~PowerupController();
 
-		void initialize(sf::Vector2f position)override;
-		void update()override;
-		void render()override;
+		void initialize(sf::Vector2f position) override;
+		void update() override;
+		void render() override;
 
-		void onCollected()override;
+		sf::Vector2f getCollectiblePosition() override;
+		void onCollected() override;
 
-		sf::Vector2f getCollectiblePosition()override;
 		PowerupType getPowerupType();
 
 		const sf::Sprite& getColliderSprite() override;
-		void onCollision(ICollider* other_collider)override;
+		void onCollision(ICollider* other_collider) override;
 	};
 }
-

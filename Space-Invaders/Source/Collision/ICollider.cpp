@@ -1,4 +1,4 @@
-#include"../../Header/Collision/ICollider.h"
+#include "../../Header/Collision/ICollider.h"
 
 namespace Collision
 {
@@ -9,7 +9,6 @@ namespace Collision
 
 	ICollider::~ICollider()
 	{
-
 	}
 
 	void ICollider::enableCollision()

@@ -1,29 +1,31 @@
 #pragma once
-#include"../../Header/Enemy/EnemyController.h"
-#include"../../Header/Powerup/PowerupConfig.h"
+
+#include "../../header/Enemy/EnemyController.h"
+#include "../../header/Powerup/PowerupConfig.h"
 
 namespace Enemy
 {
-	namespace Controller
-	{
-		class UFOController : public EnemyController
-		{
-		private:
-			void move() override;
-			void moveLeft();
-			void moveRight();
+    namespace Controller
+    {
+        class UFOController : public EnemyController
+        {
+        private:
 
-			void fireBullet() override;
-			void destroy() override;
-			Powerup::PowerupType getRandomPowerupType();
+            void move() override;
+            void moveLeft();
+            void moveRight();
 
-		public:
-			UFOController(EnemyType type);
-			~UFOController();
+            MovementDirection getInitialMovementDirection();
+            void fireBullet() override;
+            Powerup::PowerupType getRandomPowerupType();
 
-			void initialize() override;
+        public:
+            UFOController(EnemyType type);
+            ~UFOController();
 
-			virtual void onCollision(ICollider* other_collider)override;
-		};
-	}
+            void initialize() override;
+            virtual void onCollision(ICollider* other_collider) override;
+
+        };
+    }
 }

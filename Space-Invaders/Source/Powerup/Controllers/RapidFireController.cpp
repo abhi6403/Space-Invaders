@@ -1,25 +1,28 @@
-#include"../../Header/Powerup/Controllers/RapidFireController.h"
-#include"../../Header/Global/ServiceLocator.h"
+#include "../../header/Powerup/Controllers/RapidFireController.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Powerup
 {
-	namespace Controller
-	{
-		using namespace Global;
+    namespace Controller
+    {
+        using namespace Global;
 
-		RapidFireController::RapidFireController(PowerupType type) :PowerupController(type)
-		{
+        RapidFireController::RapidFireController(PowerupType type) : PowerupController(type)
+        {
+        }
 
-		}
+        RapidFireController::~RapidFireController()
+        {
+        }
 
-		RapidFireController::~RapidFireController()
-		{
+        void RapidFireController::onCollected()
+        {
+            applyPowerup();
+        }
 
-		}
-
-		void RapidFireController::applyPowerup()
-		{
-			ServiceLocator::getInstance()->getPlayerService()->enableRapidFire();
-		};
-	}
+        void RapidFireController::applyPowerup()
+        {
+            ServiceLocator::getInstance()->getPlayerService()->enableRapidFire();
+        }
+    }
 }

@@ -1,20 +1,20 @@
 #pragma once
-#include"../../Header/Powerup/PowerupController.h"
+
+#include "../../header/Powerup/PowerupController.h"
 
 namespace Powerup
 {
-	namespace Controller
-	{
-		class RapidFireController :public PowerupController
-		{
-		protected:
-			void applyPowerup()override;
+    namespace Controller
+    {
+        class RapidFireController : public PowerupController
+        {
+        public:
+            RapidFireController(PowerupType type);
+            virtual ~RapidFireController();
 
-		public:
-			RapidFireController(PowerupType type);
-			virtual ~RapidFireController();
+            void onCollected() override;
 
-			
-		};
-	}
+            void applyPowerup();
+        };
+    }
 }

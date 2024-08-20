@@ -32,7 +32,7 @@ namespace Enemy
 		void ThunderSnakeController::fireBullet()
 		{
 			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDO,enemy_model->getOwnerEntityType(),
-				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
+				enemy_model->getEnemyCurrentPostion() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}
 
@@ -53,7 +53,7 @@ namespace Enemy
 
         void ThunderSnakeController::moveLeft()
         {
-			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+			sf::Vector2f currentPosition = enemy_model->getEnemyCurrentPostion();
 			currentPosition.y += thundersnake_vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 			currentPosition.x -= thundersnake_horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
@@ -63,7 +63,7 @@ namespace Enemy
 			}
 			else
 			{
-				enemy_model->setEnemyPosition(currentPosition);
+				enemy_model->setEnemyCurrentPostion(currentPosition);
 			}
             
         }
@@ -71,7 +71,7 @@ namespace Enemy
 
         void ThunderSnakeController::moveRight()
         {
-			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+			sf::Vector2f currentPosition = enemy_model->getEnemyCurrentPostion();
 			currentPosition.y += thundersnake_vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 			currentPosition.x += thundersnake_horizontal_movement_speed* ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
@@ -81,7 +81,7 @@ namespace Enemy
 			}
 			else
 			{
-				enemy_model->setEnemyPosition(currentPosition);
+				enemy_model->setEnemyCurrentPostion(currentPosition);
 			}
             
         }
